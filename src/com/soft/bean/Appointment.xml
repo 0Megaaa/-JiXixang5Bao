@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
+	"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+	<mapper namespace="com.soft.mapper.AppointMapper">
+	
+	
+	<insert id="insertAppoint" parameterType="com.soft.bean.TbAppointment" >
+	
+	insert into tbappointment (appid,carnum,money,starttime,endtime)values
+	(SEQUENCE1.nextval,#{carNum},#{money},#{startTime},#{endTime})
+	
+	
+	</insert>
+	<select id="queryAppoint"  parameterType="com.soft.bean.TbAppointment" resultType="com.soft.bean.TbAppointment"  >
+	
+	
+	select * from tbappointment where 
+	starttime=#{startTime} and carnum=#{carNum}
+	
+	
+	</select>
+	
+	
+	</mapper>

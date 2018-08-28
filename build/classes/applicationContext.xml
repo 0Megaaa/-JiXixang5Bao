@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:task="http://www.springframework.org/schema/task" 
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans.xsd 
+       http://www.springframework.org/schema/context 
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/task  
+	   http://www.springframework.org/schema/task/spring-task-4.1.xsd">
+	
+	<!-- 配置数据库连接池 -->
+	<bean id="myDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="oracle.jdbc.OracleDriver" />
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:orcl" />  <!-- 132.232.122.230 -->
+		<property name="username" value="park" />
+		<property name="password" value="123456" />
+	</bean>
+	<!-- 配置SqlSessionFactoryBean-->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="myDataSource" />
+		<property name="mapperLocations" value="classpath:com/soft/bean/*.xml" />
+	</bean>
+
+	 <!-- 配置MapperScannerConfigurer -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+		<property name="basePackage" value="com.soft.mapper" />
+		<property name="annotationClass" value="com.soft.annotation.MyAnnotation" />
+	</bean>
+
+	<!-- 开启组件扫描 -->
+	<context:component-scan base-package="com.soft" annotation-config="true"/>
+
+	<context:annotation-config />
+	<task:annotation-driven />
+	<context:component-scan base-package="com.soft.task" /> 
+  
+</beans>

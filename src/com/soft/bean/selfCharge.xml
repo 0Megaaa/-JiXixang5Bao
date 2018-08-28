@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
+	"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.soft.mapper.SelfChargeMapper">
+
+
+
+
+
+
+	<select id="queryWhiteList" resultType="com.soft.bean.TbWhiteList"
+		parameterType="String">
+
+		select * from tbwhitelist where CARNUM=#{carNum}and whiteState=12
+
+	</select>
+	<select id="queryVip" resultType="com.soft.bean.TbVip"
+		parameterType="String">
+
+
+		select * from tbvip where CARNUM=#{carNum} and vipstate=1
+	</select>
+
+	<select id="queryCarId" parameterType="String" resultType="com.soft.bean.TbCar">
+
+		select * from tbcar where CARNUM=#{carNum} and paystate=7
+	</select>
+
+
+
+	<update id="updateCarState" parameterType="com.soft.bean.TbCar">
+		update tbcar set paystate=6 , endtime=#{endTime} where carId=#{carId}
+	</update>
+
+	<select id="queryCardMsg" resultType="com.soft.bean.TbCar"
+		parameterType="long">
+
+
+		select * from tbcar where carId=#{carId}
+
+	</select>
+
+<update id="updateCarMsg" parameterType="com.soft.bean.TbCar">
+
+update tbcar set paystate=6 , endtime=#{endTime},paychannel=2 ,money=#{money}   where carId=#{carId}
+
+</update>
+
+<update id="updatePlace" parameterType="com.soft.bean.TbParkPlace" >
+update  tbparkplace set carid=null    where  parkid=#{parkId}
+
+</update>
+
+<insert id="insertTbCharge"  parameterType="com.soft.bean.TbCharge" >
+
+insert into tbcharge (CHID,CARID,MONEY,CHARGETIME,STAFFID)
+values(SEQUENCE1.nextval,#{carId},#{money},#{chargeTime},0)
+
+</insert>
+
+<select id="queryTbRule"  resultType="com.soft.bean.TbRule" >
+select * from tbrule where rulestate=1
+
+</select>
+
+
+
+</mapper>
+
+
+
+

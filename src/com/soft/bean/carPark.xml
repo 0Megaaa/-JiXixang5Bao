@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
+	"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+	<mapper namespace="com.soft.mapper.CarParkMapper">
+	
+<!-- 	<select id="queryAllParkPlace" parameterType="com.soft.bean.TbParkPlace" 
+	resultType="com.soft.bean.TbParkPlace">
+		select * from tbluser where usernumber = #{userNumber} and userpwd = #{userPwd}
+	</select>
+ -->
+	<select id="queryAllCarPark" resultType="com.soft.bean.ViewCarPark" parameterType="com.soft.bean.ViewCarPark" >
+		select * from viewCARPARK
+	</select>
+	
+	<select id="queryCarParkMsg" resultType="com.soft.bean.ViewCarPark" parameterType="com.soft.bean.ViewCarPark">
+		select * from viewCARPARK
+		
+		<where>
+	   parkx=#{parkX} and parky=#{parkY}
+		
+		
+		</where>
+	</select>
+	
+	<select id="queryCar" resultType="com.soft.bean.TbCar"  parameterType="com.soft.bean.TbCar">
+	
+	
+	
+	select * from tbcar where carnum=#{carNum}
+	
+	</select>
+	
+	<select id="queryCarPlace" resultType="com.soft.bean.TbParkPlace"  parameterType="com.soft.bean.TbParkPlace" >
+	select * from tbparkplace where carid=#{carId}
+	
+	</select>
+	
+	<update id="updateParkPlace"  parameterType="com.soft.bean.TbParkPlace">
+	
+update tbparkplace set carid=#{carId},parkstate=9 where parkid=#{parkId}
+	
+	
+	</update>
+
+	<select id="queryCarParkMsg1" resultType="com.soft.bean.ViewCarPark" parameterType="com.soft.bean.ViewCarPark">
+		select * from viewCARPARK  where 1=1
+		
+	
+		<if test="parkId != null"> and parkId= #{parkId}</if>
+	                        
+		<if test="carNum != null"> and  carNum= #{carNum}</if>
+		
+	
+	</select>
+	
+	
+	<update id="updateCarParkSrc"  parameterType="com.soft.bean.TbCar">
+	
+update tbcar set parkImgSrc=#{parkImgSrc} where carId=#{carId}
+	
+	
+	</update>
+	<select id="queryCarParkMsg2" resultType="com.soft.bean.ViewCarPark" parameterType="com.soft.bean.ViewCarPark">
+		select * from viewCARPARK  where carNum= #{carNum}
+		
+	
+	</select>
+	
+	<select id="queryParkPlace"  parameterType="String" resultType="com.soft.bean.TbParkPlace">
+	
+	select * from tbparkplace   where  parkstate=10
+	
+	</select>
+	
+	<select id="queryParkPlaceAll"  resultType="com.soft.bean.TbParkPlace">
+	
+	select * from tbparkplace  
+	
+	</select>
+	<select id="queryAppoint" parameterType="com.soft.bean.TbAppointment" resultType="com.soft.bean.TbAppointment">
+	
+	
+	select * from tbappointment where to_date(#{endTime}, 'yyyy-MM-dd hh24:mi') >to_date(endTime, 'yyyy-MM-dd hh24:mi') 
+	
+	
+	
+	
+	
+	
+	
+	</select>
+</mapper>
