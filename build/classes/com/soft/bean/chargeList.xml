@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
+	"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+	
+<mapper namespace="com.soft.mapper.ChargeListMapper">
+	
+	<select id="getChargeList" parameterType="com.soft.bean.Page" resultType="com.soft.bean.ViewCharge">
+		select  * from (select e.* from (select chtype,sum(money) money,sum(case when chtype 
+		!='月缴' then 1 else 0 end) ocuser ,sum(case when chtype ='月缴' then 1 else 0 end) 
+		pauser from (select c.staffname,a.money,a.staffid,a.chtype from tbcharge a left join 
+		tbcar b on a.carid=b.carid left join tbstaff c on a.staffid=c.staffid
+		<if test="startDate!=null and startDate!=''">where chargetime >= #{startDate} )d group by 
+		chtype)e )</if>
+		<if test="startDate==null or startDate==''">)d group by chtype)e )</if>
+	</select>
+	<select id="findSumMoney" resultType="com.soft.bean.ViewCharge">
+		select sum(money) as summoney from tbcharge
+	</select>
+	<select id="findSumPark" resultType="com.soft.bean.ViewCharge">
+		select count(*) as parktime from tbcar
+	</select>
+	<select id="findPackageMoney" parameterType="com.soft.bean.Page" resultType="com.soft.bean.ViewVip">
+	  select  * from (select e.* from (select paid,patime,paprice,sum(paprice) 
+	  money from (select a.paid,b.patime,b.paprice from tbvip a left join 
+		tbpackages b on a.paid=b.paid where 1=1
+	  <if test="paId!=0"> and a.paId = #{paId}</if>
+	  <if test="startDate!=null and startDate!=''">and startdate >= #{startDate} )d group by 
+		paid,paprice,patime)e )</if>
+	  <if test="startDate==null or startDate==''">)d group by paid,paprice,patime)e )</if>
+	</select>
+	<select id="findPackageList" resultType="com.soft.bean.TbPackages">
+		select * from tbpackages 
+	</select>
+</mapper>

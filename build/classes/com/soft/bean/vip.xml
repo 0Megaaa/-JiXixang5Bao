@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
+	"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+	
+<mapper namespace="com.soft.mapper.VipMapper">
+	
+	<select id="getVipList" parameterType="com.soft.bean.Page" resultType="com.soft.bean.ViewVip">
+		select * from viewvip where 1=1
+		<if test="carNum!=null and carNum!=''">and carnum like concat(concat('%',#{carNum}),'%')</if>
+		<if test="startDate!=null and startDate!=''">and startDate = #{startDate}</if>
+		<if test="vipState!=0">and vipState = #{vipState}</if>
+	</select>
+	
+	<select id="getPackagesSelect" resultType="com.soft.bean.TbPackages">
+		select * from tbpackages order by patime asc
+	</select>
+	
+	<insert id="addVip" parameterType="com.soft.bean.ViewVip">
+		<selectKey keyProperty="vipId" order="BEFORE" resultType="long">
+			select sequence1.nextval from dual
+		</selectKey>
+		insert into tbvip values(#{vipId},#{carNum},#{startDate},#{vipState},#{paId})
+	</insert>
+	
+	<select id="getPackageById" parameterType="String" resultType="com.soft.bean.TbPackages">
+		select * from tbpackages where paid = #{paId}
+	</select>
+	
+	<select id="getVipById" parameterType="String" resultType="com.soft.bean.ViewVip">
+		select * from viewvip where vipid = #{vipId}
+	</select>
+	
+	<update id="deleteVip" parameterType="String">
+		delete tbvip where vipid = #{vipId}
+	</update>
+	
+	<select id="carNumCheck" parameterType="String" resultType="com.soft.bean.TbVip">
+		select * from tbvip where carNum = #{carNum}
+	</select>
+	
+	<!-- 根据多个ID查询员工 -->
+	<update id="clearVip" parameterType="java.util.List">
+		update tbvip set vipstate = 2 where vipid in 
+	<foreach collection="list" index="index" item="vip" separator="," open="(" close=")">
+        #{vip.vipId,jdbcType=BIGINT}
+    </foreach>
+	</update>
+	
+	<select id="findAllVip" resultType="com.soft.bean.ViewVip">
+		select * from viewvip where vipstate = 1
+	</select>
+	
+	
+</mapper>

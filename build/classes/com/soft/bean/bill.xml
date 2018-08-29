@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
+	"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+	
+<mapper namespace="com.soft.mapper.BillMapper">
+	
+	<select id="getBillList" parameterType="String" resultType="com.soft.bean.ViewBill">
+		select * from viewbill where 1=1
+		and to_date(chargetime,'yyyy-mm-dd hh24:mi:ss') &gt;= to_date(#{0},'yyyy-mm-dd hh24:mi:ss')
+		and to_date(chargetime,'yyyy-mm-dd hh24:mi:ss') &lt; to_date(#{1},'yyyy-mm-dd hh24:mi:ss')
+	</select>
+	
+	<select id="getBillCount" parameterType="String" resultType="long">
+		select COALESCE(sum(money),0) from
+		(select * from viewbill where 1=1
+		and to_date(chargetime,'yyyy-mm-dd hh24:mi:ss') &gt;= to_date(#{0},'yyyy-mm-dd hh24:mi:ss')
+		and to_date(chargetime,'yyyy-mm-dd hh24:mi:ss') &lt; to_date(#{1},'yyyy-mm-dd hh24:mi:ss'))
+	</select>
+	
+	<insert id="addBill" parameterType="com.soft.bean.TbBill">
+		<selectKey keyProperty="billId" order="BEFORE" resultType="long">
+		select sequence1.nextval from dual
+		</selectKey>
+		insert into tbbill values(#{billId},#{scheduleDate},#{scheduleType},#{moneyCount})
+	</insert>
+	
+</mapper>

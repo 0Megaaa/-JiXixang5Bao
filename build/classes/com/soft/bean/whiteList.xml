@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
+	"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+	
+<mapper namespace="com.soft.mapper.WhiteListMapper">
+	
+	<select id="getWhiteList" parameterType="com.soft.bean.Page" resultType="com.soft.bean.ViewWhiteList">
+		select * from tbwhitelist where 1=1
+		<if test="carNum!=null and carNum!=''">and carnum like concat(concat('%',#{carNum}),'%')</if>
+		<if test="startDate!=null and startDate!=''">and startDate = #{startDate}</if>
+	</select>
+	<delete id="deleteWhite" parameterType="java.lang.Long">
+		delete from tbwhitelist where whiteid=#{whiteId}
+	</delete>
+	<insert id="createWhite" parameterType="com.soft.bean.ViewWhiteList">
+		
+		<selectKey keyProperty="whiteId" order="BEFORE" resultType="java.lang.Integer">
+			select sequence1.nextval from dual
+		</selectKey>
+		insert into tbwhitelist (whiteid,carnum,startdate) values (#{whiteId},#{carNum},#{startDate})
+	</insert>
+</mapper>

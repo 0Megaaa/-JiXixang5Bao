@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
+	"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+	
+<mapper namespace="com.soft.mapper.PackageMapper">
+	
+	<select id="getPackageList" parameterType="com.soft.bean.Page" resultType="com.soft.bean.TbPackages">
+		select * from tbpackages order by to_number(paTime)
+	</select>
+	
+	<select id="getPackageById" parameterType="String" resultType="com.soft.bean.TbPackages">
+		select * from tbpackages where paid = #{paId}
+	</select>
+	
+	<update id="updatePackage" parameterType="com.soft.bean.TbPackages">
+		update tbpackages set patime = #{paTime},paprice = #{paPrice} where paid = #{paId}
+	</update>
+	
+	<update id="deletePackage" parameterType="String">
+		delete tbpackages where paid = #{paId}
+	</update>
+	
+	<insert id="addPackage" parameterType="com.soft.bean.TbPackages">
+		<selectKey keyProperty="paId" order="BEFORE" resultType="long">
+			select sequence1.nextval from dual
+		</selectKey>
+		insert into tbpackages values(#{paId},#{paTime},#{paPrice})
+	</insert>
+	
+	<select id="findVipByPackageId" parameterType="String" resultType="com.soft.bean.TbVip">
+		select * from tbvip where paid = #{paId} and vipstate = 1
+	</select>
+	
+	<select id="timeCheck" parameterType="String" resultType="com.soft.bean.TbPackages">
+		select * from tbpackages where patime = #{time}
+	</select>
+	
+</mapper>
