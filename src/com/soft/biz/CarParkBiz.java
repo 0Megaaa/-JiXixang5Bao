@@ -18,6 +18,6 @@ Integer updateParkPlace(TbParkPlace tbParkPlace);
 Integer updateCarParkSrc(TbCar tbCar); 
 List<TbParkPlace> queryParkPlace(String parkState);
 List<TbParkPlace> queryParkPlaceAll();
-
+List<TbCar>  queryCarAll(TbCar tbCar);
 List<TbAppointment>queryAppoint(TbAppointment tbAppointment);
 }

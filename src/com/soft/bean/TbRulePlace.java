@@ -19,6 +19,10 @@ private String appointSize;
 	
 	
 	
+	
+	
+	
+	
 	public String getAppointSize() {
 		return appointSize;
 	}

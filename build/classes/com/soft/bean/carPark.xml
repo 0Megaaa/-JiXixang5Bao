@@ -24,9 +24,9 @@
 	
 	<select id="queryCar" resultType="com.soft.bean.TbCar"  parameterType="com.soft.bean.TbCar">
 	
+	<!--更改这里  -->
 	
-	
-	select * from tbcar where carnum=#{carNum}
+	select * from tbcar where carnum=#{carNum} and paystate=7
 	
 	</select>
 	
@@ -82,11 +82,16 @@ update tbcar set parkImgSrc=#{parkImgSrc} where carId=#{carId}
 	
 	select * from tbappointment where to_date(#{endTime}, 'yyyy-MM-dd hh24:mi') >to_date(endTime, 'yyyy-MM-dd hh24:mi') 
 	
+	</select>
 	
+	<select id="queryCarAll" resultType="com.soft.bean.TbCar"  parameterType="com.soft.bean.TbCar">
 	
+	<!--更改这里  -->
 	
-	
-	
+	select * from tbcar where carnum=#{carNum} 
 	
 	</select>
+	
+	
+	
 </mapper>

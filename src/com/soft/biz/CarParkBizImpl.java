@@ -103,6 +103,12 @@ public class CarParkBizImpl implements CarParkBiz {
 		// TODO Auto-generated method stub
 		return carParkMapper.queryAppoint( tbAppointment);
 	}
+
+	@Override
+	public List<TbCar> queryCarAll(TbCar tbCar) {
+		// TODO Auto-generated method stub
+		return  carParkMapper.queryCarAll( tbCar);
+	}
 	
 	
 	

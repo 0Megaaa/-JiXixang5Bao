@@ -1,5 +1,7 @@
 package com.soft.biz;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -32,6 +34,11 @@ AppointMapper appointMapper;
 	appointment3.setFlag(flag);
 		
 		return appointment3;
+	}
+	@Override
+	public List<TbAppointment> querySelfApp(TbAppointment appointment) {
+		// TODO Auto-generated method stub
+		return querySelfApp( appointment);
 	}
 
 }

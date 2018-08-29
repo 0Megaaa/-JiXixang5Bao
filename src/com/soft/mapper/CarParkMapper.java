@@ -13,6 +13,8 @@ public interface CarParkMapper {
 	List<ViewCarPark> queryAllCarPark();
 	ViewCarPark   queryCarParkMsg(ViewCarPark viewCarPark);
 	TbCar queryCar(TbCar tbCar);
+	List<TbCar>  queryCarAll(TbCar tbCar);
+	
 	//通过车号id查询车位信息。
 	TbParkPlace queryCarPlace(TbParkPlace tbParkPlace);
 	
