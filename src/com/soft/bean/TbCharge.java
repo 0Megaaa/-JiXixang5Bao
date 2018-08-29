@@ -9,6 +9,8 @@ private long carId;
 private long  money;
 private long  staffId;
 private String chargeTime;
+
+private String chType;
 public long getChId() {
 	return chId;
 }
@@ -39,19 +41,28 @@ public String getChargeTime() {
 public void setChargeTime(String chargeTime) {
 	this.chargeTime = chargeTime;
 }
+
+
+
+public String getChType() {
+	return chType;
+}
+public void setChType(String chType) {
+	this.chType = chType;
+}
 public TbCharge() {
 	super();
 	// TODO Auto-generated constructor stub
 }
-public TbCharge(long chId, long carId, long money, long staffId, String chargeTime) {
+public TbCharge(long chId, long carId, long money, long staffId, String chargeTime, String chType) {
 	super();
 	this.chId = chId;
 	this.carId = carId;
 	this.money = money;
 	this.staffId = staffId;
 	this.chargeTime = chargeTime;
+	this.chType = chType;
 }
-
 
 
 

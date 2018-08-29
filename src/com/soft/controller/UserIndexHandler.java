@@ -25,8 +25,8 @@ import com.soft.biz.RuleMiniBiz;
 public class UserIndexHandler {
 	@Resource
 	private CarParkBiz CarParkBizImpl;
-@Resource
-private TbAppointment tbAppointment;
+	@Resource
+	private TbAppointment tbAppointment;
 	@Resource
 	private RuleMiniBiz RuleMiniBizImpl;
 
@@ -50,23 +50,21 @@ private TbAppointment tbAppointment;
 
 		// 查询总车位
 		List<TbParkPlace> listAll = CarParkBizImpl.queryParkPlaceAll();
-//获取当前时间。	
+		// 获取当前时间。
 		DateFormat df2 = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		// Date dateStart = df.parse(timeStart);
 		Date date = new Date();
 		String endTime = df2.format(date);
-		
-		//查询预约的车位。
+
+		// 查询预约的车位。
 		tbAppointment.setEndTime(endTime);
-		List<TbAppointment> listApp= CarParkBizImpl. queryAppoint( tbAppointment);
-		
-		
-		
+		List<TbAppointment> listApp = CarParkBizImpl.queryAppoint(tbAppointment);
+
 		// 查询规则表
 		TbRulePlace rp = RuleMiniBizImpl.findRule();
 
 		rp.setPlaceAll(listAll.size() + "");
-rp.setAppointSize(listApp.size()+"");
+		rp.setAppointSize(listApp.size() + "");
 		rp.setPlaceRemain(listLeft.size() + "");
 		return rp;
 	}

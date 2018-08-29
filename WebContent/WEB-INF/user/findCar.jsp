@@ -18,7 +18,7 @@
 <body>
 	<a href="carpark.action">停车入库</a>
 	<a href="findCar.action">寻车</a>
-	<a>自助缴费</a>
+	<a href="javascript:input()">自助缴费</a>
 
 	<form action="findCar1.action" id="form" method="post"
 		onsubmit="return check();">
@@ -32,7 +32,10 @@
 		<!-- 	<input type="hidden" name="x" value="" id="x" /> <input type="hidden"
 			name="y" id="y" /> -->
 	</form>
+<form action="selfCharge.action" id="selfCharge" method="post">
+		<input type="hidden" name="carNum1" id="carNum1" />
 
+	</form>
 	<canvas id="canvas" width="3000" height="750"> 你的浏览器还不支持canvas
 	</canvas>
 </body>
@@ -195,6 +198,36 @@ else if(num==""){
 </script>
 
 
+<script type="text/javascript">
+function input() {
+	 var express = /^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z]{1}[A-Z0-9]{4}[A-Z0-9挂学警港澳]{1}$/;
+	 
+	var t=prompt("请输入车牌号");
+	if(t==null || t==''){
+		alert("车牌号不能为空");
+		
+		
+	}
+	else if (t.length!= 7){
+        
+ 	   alert("车牌号应为7位");
+ 	 
+   
+   }else if ( !express.test(t)) {
+ 	   alert("车牌号不正确");
+ 	   
+	}else  {
+		console.log(t);
+document.getElementById("carNum1").value=t;
+	
+		 document.getElementById("selfCharge").submit();
+		
+	}
+}
+
+
+
+</script>
 
 
 </html>

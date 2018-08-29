@@ -80,7 +80,7 @@ update tbcar set parkImgSrc=#{parkImgSrc} where carId=#{carId}
 	<select id="queryAppoint" parameterType="com.soft.bean.TbAppointment" resultType="com.soft.bean.TbAppointment">
 	
 	
-	select * from tbappointment where to_date(#{endTime}, 'yyyy-MM-dd hh24:mi') >to_date(endTime, 'yyyy-MM-dd hh24:mi') 
+	select * from tbappointment where to_date(endTime, 'yyyy-MM-dd hh24:mi')> to_date(#{endTime}, 'yyyy-MM-dd hh24:mi')  
 	
 	</select>
 	

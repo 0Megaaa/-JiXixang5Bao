@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.soft.bean.TbCar;
@@ -121,4 +123,38 @@ public class FindCarHandler {
 
 	}
 
+	
+	//小程序寻车
+	@RequestMapping(value="/findCarMini.action",    method = RequestMethod.POST, produces = "application/json;charset=utf-8"                               )
+	public  @ResponseBody    List<ViewCarPark>   findCarMini(HttpServletRequest request) {
+		// 寻车，需要输入车牌号
+		// 自助设备。
+		
+		list = CarParkBizImpl.fingAllCarPark();
+
+		
+	
+		return list;
+
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
