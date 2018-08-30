@@ -6,6 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/button.css"/>
 <title>用户自助端</title>
 <style type="text/css">
 #canvas {
@@ -16,9 +17,15 @@
 </style>
 </head>
 <body>
-	<a href="carpark.action">停车入库</a>
-	<a href="findCar.action">寻车</a>
-	<a href="javascript:input()">自助缴费</a>
+<div style="position: absolute;left: 600px; top: 10px;" >
+
+<input type="image" src="${pageContext.request.contextPath}/assets/img/2.png" width ="200px" height="200px"/>
+</div>
+<div style="position: absolute;left: 480px; top: 210px;" >
+<a  href="carpark.action" class="button button-3d button-primary button-rounded">停车入库</a>
+<a href="javascript:input()"  class="button button-3d button-primary button-rounded">自助缴费</a>
+<a  href="findCar.action" class="button button-3d button-primary button-rounded">寻爱车</a>
+</div>
 	<form action="carparkxy.action" id="form" method="post">
 
 		<input type="hidden" name="x" id="x" /> <input type="hidden" name="y"
@@ -31,14 +38,16 @@
 	</form>
 
 	<div>
-
+	<br/><br/><br/><br/>
+	
+<div  style="position: absolute;left: 0px; top: 250px;">
 		<c:if test="${list!=null}">
 温馨提示：请点击要停放的车库。
 <canvas id="canvas" width="3000" height="750"> 你的浏览器还不支持canvas
 			</canvas>
 		</c:if>
-
-	</div>
+</div>
+	
 
 
 
@@ -62,7 +71,8 @@ console.log("${type.getPrefix()}");
 context.fillStyle="#F5270B";
 context.fillRect(100*"${type.getParkX()}",50*"${type.getParkY()}",100,50);
 context.fillStyle="#0F0F0F";
-context.fillText("${type.getCarNum()}", 100*"${type.getParkX()}"+20,50*"${type.getParkY()}"+10);
+context.font="20px Times New Roman";
+context.fillText("${type.getCarNum()}", 100*"${type.getParkX()}"+8,50*"${type.getParkY()}"+30);
  
 
 </c:if>
@@ -145,8 +155,6 @@ document.getElementById("carNum1").value=t;
 		
 	}
 }
-
-
-
 </script>
+
 </html>

@@ -6,6 +6,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link type="text/css" rel="stylesheet"
+	href="${pageContext.request.contextPath}/assets/css/button.css" />
+
 <title>用户自助端</title>
 <style type="text/css">
 #canvas {
@@ -16,28 +19,51 @@
 </style>
 </head>
 <body>
-	<a href="carpark.action">停车入库</a>
-	<a href="findCar.action">寻车</a>
-	<a href="javascript:input()">自助缴费</a>
+	<div style="position: absolute; left: 600px; top: 10px;">
 
-	<form action="findCar1.action" id="form" method="post"
-		onsubmit="return check();">
-		<div>
-			请选择自助终端编号<input type="text" name="machine" id="machine" />
-		</div>
-		<div>
-			请输入车牌号<input type="text" name="carNum" id="carNum" />
-		</div>
-		<input type="submit" value="查找" />
-		<!-- 	<input type="hidden" name="x" value="" id="x" /> <input type="hidden"
-			name="y" id="y" /> -->
-	</form>
-<form action="selfCharge.action" id="selfCharge" method="post">
+		<input type="image"
+			src="${pageContext.request.contextPath}/assets/img/2.png"
+			width="200px" height="200px" />
+	</div>
+	<div style="position: absolute; left: 480px; top: 210px;">
+		<a href="carpark.action"
+			class="button button-3d button-primary button-rounded">停车入库</a> <a
+			href="javascript:input()"
+			class="button button-3d button-primary button-rounded">自助缴费</a> <a
+			href="findCar.action"
+			class="button button-3d button-primary button-rounded">寻爱车</a>
+	</div>
+
+
+
+	<!--根据设备找车.  -->
+	<div style="position: absolute; left: 520px; top: 260px;">
+		<form action="findCar1.action" id="form" method="post"
+			onsubmit="return check();">
+			<div>
+				请选择自助终端编号:<input type="text" name="machine" id="machine"
+					style="line-height: 22px" />
+			</div>
+			<div style="margin-top: 5px">
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;请输入车牌号:<input type="text"
+					name="carNum" id="carNum" style="line-height: 22px" />
+			</div>
+			<div style="margin-left: 100px; margin-top: 15px">
+				<input type="submit" value="查找"
+					class="button button-glow button-border button-rounded button-primary" />
+			</div>
+		</form>
+
+	</div>
+
+	<form action="selfCharge.action" id="selfCharge" method="post">
 		<input type="hidden" name="carNum1" id="carNum1" />
 
 	</form>
-	<canvas id="canvas" width="3000" height="750"> 你的浏览器还不支持canvas
-	</canvas>
+	<div style="position: absolute; left: 0px; top: 400px;">
+		<canvas id="canvas" width="3000" height="750">
+		你的浏览器还不支持canvas </canvas>
+	</div>
 </body>
 <script type="text/javascript">
  
@@ -55,12 +81,6 @@ context.fill();
 
 </c:forEach>
 
-
-  
-  
-  
-  
-  
 <c:forEach items="${list}" var="type">
 /* console.log("${type.getPrefix()}"); */
 
@@ -73,8 +93,10 @@ context.stroke();
 console.log("${type.getPrefix()}");
 context.fillStyle="#F5270B";
 context.fillRect(100*"${type.getParkX()}",50*"${type.getParkY()}",100,50);
+context.font="20px Times New Roman";
 context.fillStyle="#0F0F0F";
-context.fillText("${type.getCarNum()}", 100*"${type.getParkX()}"+20,50*"${type.getParkY()}"+10);
+
+context.fillText("${type.getCarNum()}", 100*"${type.getParkX()}"+8,50*"${type.getParkY()}"+30);
  
 
 </c:if>
@@ -103,27 +125,27 @@ context.fillRect(100*"${type.getParkX()}",50*"${type.getParkY()}",100,50);
 //左1
 
  context.fillStyle="#436EEE";
-context.fillRect(100*0,50*6,50,50);
+context.fillRect(100*0,50*6,75,50);
 context.fillStyle="#0F0F0F";
 context.fillText("设备1", 100*0+10,50*6+27);
  
  
 //上
 context.fillStyle="#436EEE";
-context.fillRect(100*6,0,50,50);
+context.fillRect(100*6,0,75,50);
 context.fillStyle="#0F0F0F";
 context.fillText("设备2", 100*6+10,50*0+27);
  
 //右
  
   context.fillStyle="#436EEE";
-context.fillRect(100*12.5,50*6,50,50);
+context.fillRect(100*12.5,50*6,75,50);
 context.fillStyle="#0F0F0F";
 context.fillText("设备3", 100*12.5+10,50*6+27);
  
 //下
 context.fillStyle="#436EEE";
-context.fillRect(100*6,50*13,50,50);
+context.fillRect(100*6,50*13,75,50);
 context.fillStyle="#0F0F0F";
 context.fillText("设备4", 100*6+10,50*13+27);
  

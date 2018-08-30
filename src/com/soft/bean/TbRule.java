@@ -4,32 +4,18 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class TbRule {
-	private long ruleid;
+	private long ruleId;
 	private String passfh;
 	private String pass3h;
 	private String pass5h;
 	private String pass8h;
-	private String rulename;
-	private String rulestate;
-	public TbRule(long ruleid, String passfh, String pass3h, String pass5h, String pass8h, String rulename,
-			String rulestate) {
-		super();
-		this.ruleid = ruleid;
-		this.passfh = passfh;
-		this.pass3h = pass3h;
-		this.pass5h = pass5h;
-		this.pass8h = pass8h;
-		this.rulename = rulename;
-		this.rulestate = rulestate;
+	private String ruleName;
+	private String ruleState;
+	public long getRuleId() {
+		return ruleId;
 	}
-	public TbRule() {
-		super();
-	}
-	public long getRuleid() {
-		return ruleid;
-	}
-	public void setRuleid(long ruleid) {
-		this.ruleid = ruleid;
+	public void setRuleId(long ruleId) {
+		this.ruleId = ruleId;
 	}
 	public String getPassfh() {
 		return passfh;
@@ -55,18 +41,33 @@ public class TbRule {
 	public void setPass8h(String pass8h) {
 		this.pass8h = pass8h;
 	}
-	public String getRulename() {
-		return rulename;
+	public String getRuleName() {
+		return ruleName;
 	}
-	public void setRulename(String rulename) {
-		this.rulename = rulename;
+	public void setRuleName(String ruleName) {
+		this.ruleName = ruleName;
 	}
-	public String getRulestate() {
-		return rulestate;
+	public String getRuleState() {
+		return ruleState;
 	}
-	public void setRulestate(String rulestate) {
-		this.rulestate = rulestate;
+	public void setRuleState(String ruleState) {
+		this.ruleState = ruleState;
 	}
-
+	public TbRule() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public TbRule(long ruleId, String passfh, String pass3h, String pass5h, String pass8h, String ruleName,
+			String ruleState) {
+		super();
+		this.ruleId = ruleId;
+		this.passfh = passfh;
+		this.pass3h = pass3h;
+		this.pass5h = pass5h;
+		this.pass8h = pass8h;
+		this.ruleName = ruleName;
+		this.ruleState = ruleState;
+	}
+	
 	
 }
