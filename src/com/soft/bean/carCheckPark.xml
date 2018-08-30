@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
+	"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+	<mapper namespace="com.soft.mapper.CarParkCheckMapper">
+	
+ 
+	<select id="findAll" resultType="com.soft.bean.ViewCarPark" >
+		select * from ViewCarPark 
+		<!-- tbparkplace pa left join tbcar ca  on ca.carid=pa.carid -->
+	</select>
+	
+</mapper>

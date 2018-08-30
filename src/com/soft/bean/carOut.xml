@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
+	"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.soft.mapper.CarOutMapper">
+
+
+	<select id="findCarOut" parameterType="com.soft.bean.TbCar"
+		resultType="com.soft.bean.TbCar">
+		select * from tbcar where carnum = #{carNum}
+	</select>
+
+
+
+
+	<update id="addCarOut" parameterType="com.soft.bean.TbCar">
+		update tbcar set
+		outImgSrc=#{outImgSrc}
+		where carnum =#{carNum}
+	</update>
+
+</mapper>

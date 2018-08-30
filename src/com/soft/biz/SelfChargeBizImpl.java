@@ -117,7 +117,11 @@ tbCar2.setTotalTime((String )map1.get("停车时长"));
 
 		tbParkPlace.setCarId(tbCar.getCarId());
 		TbParkPlace tbParkPlace2 = carParkMapper.queryCarPlace(tbParkPlace);
-	selfChargeMapper.updatePlace(tbParkPlace2);
+
+		//更新车位置。（出场时才用到）
+	/*	selfChargeMapper.updatePlace(tbParkPlace2);*/
+		
+	/*	更新车状态*/
 		selfChargeMapper.updateCarMsg(tbCar);
 		//插入收费记录。
 		
@@ -126,7 +130,7 @@ tbCar2.setTotalTime((String )map1.get("停车时长"));
 
 		tbCharge.setMoney(tbCar.getMoney());
 		tbCharge.setStaffId(0);
-		System.out.println(tbCharge.getCarId()+tbCharge.getChargeTime()+tbCharge.getMoney()+tbCharge.getStaffId());
+	
 
 		selfChargeMapper.insertTbCharge(tbCharge);
 

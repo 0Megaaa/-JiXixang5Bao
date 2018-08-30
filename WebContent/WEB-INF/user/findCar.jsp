@@ -40,16 +40,23 @@
 	<div style="position: absolute; left: 520px; top: 260px;">
 		<form action="findCar1.action" id="form" method="post"
 			onsubmit="return check();">
-			<div>
-				请选择自助终端编号:<input type="text" name="machine" id="machine"
-					style="line-height: 22px" />
+			
+			<div style="margin-top: 5px;margin-left: 50px" >
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;车牌号:<input type="text"
+					name="carNum" id="carNum" style="line-height: 22px ;width: 100px"  />
 			</div>
-			<div style="margin-top: 5px">
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;请输入车牌号:<input type="text"
-					name="carNum" id="carNum" style="line-height: 22px" />
+			<div style="margin-left:  80px;margin-top: 5px;">
+				自助终端编号:
+				<select  name="machine" id="machine" style="width:50px;">
+				<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3"> 3</option>
+						<option value="4">4</option>
+				</select>
+			
 			</div>
 			<div style="margin-left: 100px; margin-top: 15px">
-				<input type="submit" value="查找"
+				<input type="submit" value="寻车"
 					class="button button-glow button-border button-rounded button-primary" />
 			</div>
 		</form>
@@ -61,7 +68,7 @@
 
 	</form>
 	<div style="position: absolute; left: 0px; top: 400px;">
-		<canvas id="canvas" width="3000" height="750">
+		<canvas id="canvas" width="1500" height="750">
 		你的浏览器还不支持canvas </canvas>
 	</div>
 </body>
@@ -90,7 +97,7 @@ context.stroke();
 
 /*判断是否有车停  */
 <c:if test="${type.getCarId()!=''}">
-console.log("${type.getPrefix()}");
+
 context.fillStyle="#F5270B";
 context.fillRect(100*"${type.getParkX()}",50*"${type.getParkY()}",100,50);
 context.font="20px Times New Roman";
@@ -105,7 +112,7 @@ context.fillText("${type.getCarNum()}", 100*"${type.getParkX()}"+8,50*"${type.ge
 context.fillStyle="#00FFFF";
 context.fillRect(100*"${type.getParkX()}",50*"${type.getParkY()}",100,50);
 context.fillStyle="#0F0F0F";
-context.fillText("${type.getCarNum()}", 100*"${type.getParkX()}"+20,50*"${type.getParkY()}"+10);
+context.fillText("${type.getCarNum()}", 100*"${type.getParkX()}"+8,50*"${type.getParkY()}"+30);
  
 </c:if>
 

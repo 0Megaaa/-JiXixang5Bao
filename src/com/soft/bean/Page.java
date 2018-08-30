@@ -25,27 +25,15 @@ public class Page<T> {
 	private long paId;
 	
 	
-	
-	
+	//海龙
+	private String ruleName;
+	private long ruleId;
 	
 	
 	public Page() {
 		super();
 	}
 
-	public Page(int curPage, int pageSize, int totalPage, List<T> pageList, int totalRecord, int curPageIndex,
-			int vipState, String startDate, String carNum) {
-		super();
-		this.curPage = curPage;
-		this.pageSize = pageSize;
-		this.totalPage = totalPage;
-		this.pageList = pageList;
-		this.totalRecord = totalRecord;
-		this.curPageIndex = curPageIndex;
-		this.vipState = vipState;
-		this.startDate = startDate;
-		this.carNum = carNum;
-	}
 
 	public long getPaId() {
 		return paId;
@@ -125,6 +113,44 @@ public class Page<T> {
 
 	public void setCarNum(String carNum) {
 		this.carNum = carNum;
+	}
+
+
+	public String getRuleName() {
+		return ruleName;
+	}
+
+
+	public void setRuleName(String ruleName) {
+		this.ruleName = ruleName;
+	}
+
+
+	public long getRuleId() {
+		return ruleId;
+	}
+
+
+	public void setRuleId(long ruleId) {
+		this.ruleId = ruleId;
+	}
+
+
+	public Page(int curPage, int pageSize, int totalPage, List<T> pageList, int totalRecord, int curPageIndex,
+			int vipState, String startDate, String carNum, long paId, String ruleName, long ruleId) {
+		super();
+		this.curPage = curPage;
+		this.pageSize = pageSize;
+		this.totalPage = totalPage;
+		this.pageList = pageList;
+		this.totalRecord = totalRecord;
+		this.curPageIndex = curPageIndex;
+		this.vipState = vipState;
+		this.startDate = startDate;
+		this.carNum = carNum;
+		this.paId = paId;
+		this.ruleName = ruleName;
+		this.ruleId = ruleId;
 	}
 	
 	

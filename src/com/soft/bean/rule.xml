@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
+	"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.soft.mapper.RuleMapper">
+
+	<!-- <select id="findAll" resultType="com.soft.bean.TbRule"> select * from 
+		tbrule where 1=1 <if test="rulename!=null"> and rulename like #{rulename} 
+		</if> </select> -->
+
+	<select id="getRuleList" parameterType="com.soft.bean.Page"
+		resultType="com.soft.bean.TbRule">
+		select * from tbrule where 1=1
+		<if test="ruleName!=null and ruleName!=''">and ruleName like concat(concat('%',#{ruleName}),'%')</if>
+	</select>
+
+
+	<update id="delete" parameterType="long">
+		delete tbrule where ruleid =
+		#{ruleId}
+	</update>
+
+	<update id="open" parameterType="com.soft.bean.Page">
+		update tbrule set ruleState = 1
+		where ruleId = #{ruleId}
+	</update>
+
+	<update id="closeState" parameterType="long">
+		update tbrule set
+		rulestate = 2 where rulestate = 1
+	</update>
+
+
+
+	<insert id="addRule" parameterType="com.soft.bean.TbRule">
+		<selectKey keyProperty="ruleId" order="BEFORE" resultType="long">
+			select sequence1.nextval from dual
+		</selectKey>
+		insert into tbrule
+		values(#{ruleId},#{passfh},#{pass3h},#{pass8h},#{ruleName},#{ruleState},#{pass5h})
+
+	</insert>
+
+
+
+	<select id="findById" parameterType="com.soft.bean.TbRule"
+		resultType="com.soft.bean.TbRule">
+		select * from tbrule where ruleId = #{ruleId}
+
+	</select>
+
+	<update id="modifyDo" parameterType="com.soft.bean.TbRule">
+		update tbrule set
+		passfh=#{passfh},pass3h=#{pass3h},pass8h=#{pass8h},ruleName=#{ruleName},ruleState=#{ruleState},pass5h=#{pass5h} 
+		where  ruleId =#{ruleId}
+	</update>
+
+</mapper>

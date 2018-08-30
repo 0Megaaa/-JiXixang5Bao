@@ -43,7 +43,7 @@
 <div  style="position: absolute;left: 0px; top: 250px;">
 		<c:if test="${list!=null}">
 温馨提示：请点击要停放的车库。
-<canvas id="canvas" width="3000" height="750"> 你的浏览器还不支持canvas
+<canvas id="canvas" width="1500" height="750"> 你的浏览器还不支持canvas
 			</canvas>
 		</c:if>
 </div>

@@ -73,8 +73,6 @@ TbCar tbCar3;
 		ModelAndView		modelAndView = new ModelAndView("user/userIndex");
 		//更新车位
 		
-		
-		
 		request.setAttribute("msg", "支付成功，请在30分钟内出场，否则将收取额外费用！");
 		
 		return modelAndView;
