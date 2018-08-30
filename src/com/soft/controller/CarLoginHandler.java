@@ -49,10 +49,9 @@ public class CarLoginHandler {
 		String fileName = (String)request.getAttribute("file");
 		File file=new File(path+"//"+fileName);
 		
-		File f = new File(this.getClass().getResource("/").getPath());
-		String spaceName=f.toString().split("park")[0].substring(3,f.toString().split("park")[0].length()-64);
-		String resourcePath = f.toString().split(":")[0]+":/"+spaceName+"/"+"park/src/resources";
-		System.out.println(resourcePath);
+		String a = getClass().getProtectionDomain().getCodeSource().getLocation().getPath();
+		String resourcePath = a.substring(1) + "resources";
+
 		PlateRecognition pr=new PlateRecognitionImpl(resourcePath);
 		Map<String,Plate> ps= pr.plateRecognize(file.getAbsolutePath());
 		String carNum = null;

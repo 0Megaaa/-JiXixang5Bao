@@ -17,6 +17,7 @@ public class ViewCarPark {
 			private String enterImgSrc;
 			private String outImgSrc;
 			private String parkImgSrc;
+			private String userTypeName;
 			private long parkId;
 			 private String prefix;
 			 private String parkNum;
@@ -26,6 +27,15 @@ public class ViewCarPark {
 			public long getCarId() {
 				return carId;
 			}
+			
+			public String getUserTypeName() {
+				return userTypeName;
+			}
+
+			public void setUserTypeName(String userTypeName) {
+				this.userTypeName = userTypeName;
+			}
+
 			public void setCarId(long carId) {
 				this.carId = carId;
 			}

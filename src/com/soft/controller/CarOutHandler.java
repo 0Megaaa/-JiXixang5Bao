@@ -78,7 +78,9 @@ public class CarOutHandler {
 				}
 			}
 
-			PlateRecognition pr = new PlateRecognitionImpl("D:\\eclipse\\park\\src\\resources");
+			String a = getClass().getProtectionDomain().getCodeSource().getLocation().getPath();
+			String s = a.substring(1) + "resources";
+			PlateRecognition pr = new PlateRecognitionImpl(s);
 
 			String path2 = savedFile + "\\" + filename;
 			File file = new File(path2);
