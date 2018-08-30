@@ -21,13 +21,13 @@
 	</update>
 
 	<update id="open" parameterType="com.soft.bean.Page">
-		update tbrule set ruleState = 1
+		update tbrule set ruleState = "1"
 		where ruleId = #{ruleId}
 	</update>
 
 	<update id="closeState" parameterType="long">
 		update tbrule set
-		rulestate = 2 where rulestate = 1
+		rulestate = "2" where rulestate = "1"
 	</update>
 
 
