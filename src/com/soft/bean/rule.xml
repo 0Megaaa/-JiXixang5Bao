@@ -21,13 +21,13 @@
 	</update>
 
 	<update id="open" parameterType="com.soft.bean.Page">
-		update tbrule set ruleState = "1"
+		update tbrule set ruleState ='1'
 		where ruleId = #{ruleId}
 	</update>
 
 	<update id="closeState" parameterType="long">
 		update tbrule set
-		rulestate = "2" where rulestate = "1"
+		rulestate ='2' where rulestate ='1'
 	</update>
 
 
@@ -36,8 +36,8 @@
 		<selectKey keyProperty="ruleId" order="BEFORE" resultType="long">
 			select sequence1.nextval from dual
 		</selectKey>
-		insert into tbrule
-		values(#{ruleId},#{passfh},#{pass3h},#{pass8h},#{ruleName},#{ruleState},#{pass5h})
+		insert into tbrule(ruleId,passfh,pass3h,pass5h,pass8h,ruleName,ruleState)
+		values(#{ruleId},#{passfh},#{pass3h},#{pass5h},#{pass8h},#{ruleName},#{ruleState})
 
 	</insert>
 

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
+	"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+	<mapper namespace="com.soft.mapper.MenuMapper">
+	
+	<select id="findMenu" resultType="com.soft.bean.TbMenu" parameterType="com.soft.bean.TbMenu">
+	select * from tbmenu
+	</select>
+	
+	<delete id="Menudelete" parameterType="com.soft.bean.TbMenu">
+	delete tbmenu where menupid=#{menuId} or menuid=#{menuId}
+	</delete>
+	
+	<insert id="MenuInsert" parameterType="com.soft.bean.TbMenu">
+	insert into tbmenu (menuid,menupid,menuname)values(Menu.nextval,0,#{menuName})
+	</insert>
+	
+	<insert id="MenuIsert2" parameterType="com.soft.bean.TbMenu">
+	insert into tbmenu (menuid,menupid,menuname)values(Menu.nextval,#{menuPid},#{menuName})
+	</insert>
+	
+	<select id="selectmenu" parameterType="com.soft.bean.TbMenu" 
+	resultType="com.soft.bean.TbMenu">
+	select * from tbmenu where menuid = #{menuId}
+	</select>
+
+
+	
+	
+</mapper>

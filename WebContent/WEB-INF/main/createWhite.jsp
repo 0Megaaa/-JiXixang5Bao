@@ -8,9 +8,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css"/>
-<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css"/> 
-<script src="${pageContext.request.contextPath}/js/jquery.min.js" type="text/javascript"></script>
+<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/bootstrap.css"/>
+<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css"/> 
+<script src="${pageContext.request.contextPath}/assets/js/jquery.min.js" type="text/javascript"></script>
 </head>
  <script type = "text/javascript">
     

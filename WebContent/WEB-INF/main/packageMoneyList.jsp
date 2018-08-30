@@ -5,7 +5,7 @@ pageEncoding="UTF-8"%>
 <html lang="zh-CN">
 <head>
     <meta charset="utf-8">
-    <script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
     <title>会员管理</title>
 </head>
 <body>
@@ -82,7 +82,7 @@ pageEncoding="UTF-8"%>
 
 </form>
 </body>
-<script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
 <script type="text/javascript">
 
 	var message = "${message == null ? "" : message}";

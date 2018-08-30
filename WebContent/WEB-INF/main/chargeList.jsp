@@ -71,7 +71,7 @@ pageEncoding="UTF-8"%>
 
 </form>
 </body>
-<script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
 <script type="text/javascript">
 
 	var message = "${message == null ? "" : message}";

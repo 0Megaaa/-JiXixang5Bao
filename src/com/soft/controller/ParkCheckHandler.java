@@ -17,7 +17,7 @@ import com.soft.biz.CarParkCheckBiz;
 @RequestMapping("/parkPlace")
 public class ParkCheckHandler {
 	@Resource
-	private CarParkCheckBiz CarParkBizImpl;
+	private CarParkCheckBiz carParkCheckBizImpl;
 	List<ViewCarPark> list;
 	@Resource
 	private ViewCarPark viewCarPark;
@@ -31,10 +31,8 @@ public class ParkCheckHandler {
 	@RequestMapping("/showMap.action")
 	public String carpark(HttpServletRequest request) {
 
-		list = CarParkBizImpl.queryAllCarPark();
-		for(int i=0;i<list.size();i++){
-			System.out.println(list.get(i).getCarNum());
-		}
+		list = carParkCheckBizImpl.queryAllCarPark();
+		
 		request.setAttribute("list", list);
 		return "user/showMap";
 

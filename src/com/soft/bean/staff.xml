@@ -10,6 +10,47 @@
 	</select>
 
  
+	<select id="findAll" 
+	resultType="com.soft.bean.TbStaff">
+	select * from tbstaff
+	</select>
+	
+	<update id="staffupdate" parameterType="com.soft.bean.TbStaff">
+		update tbstaff set staffstate = #{staffState} where staffid = #{staffId} 
+	</update>
+	
+	<delete id="staffdelete" parameterType="com.soft.bean.TbStaff"
+	>DELETE FROM tbstaff WHERE staffid = #{staffId} 
+	</delete>
+	
+	<select id="selectuser" parameterType="com.soft.bean.TbStaff" 
+	resultType="com.soft.bean.TbStaff">
+	select * from tbstaff where staffId = #{staffId}
+	</select>
+	
+	<update id="updateuser" parameterType="com.soft.bean.TbStaff">
+	update tbstaff set staffname = #{staffName} where staffid = #{staffId} 
+	</update>
+	
+	<update id="updatepwd" parameterType="com.soft.bean.TbStaff">
+	update tbstaff set staffpwd= #{staffPwd} where staffid = #{staffId}
+	</update>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 </mapper>

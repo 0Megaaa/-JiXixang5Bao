@@ -59,7 +59,7 @@ public class ChargeListHandler {
 		request.setAttribute("parkTime", parkTime);
 		
 		request.setAttribute("message", request.getAttribute("message"));
-		return "chargeList";
+		return "main/chargeList";
 	}
 	@RequestMapping("/packageMoneySum.action")
 	public String packageMoneySum(HttpServletRequest request,Page<ViewVip> page){
@@ -69,7 +69,7 @@ public class ChargeListHandler {
 		page = chargeListBiz.getPackageMoney(page);
 		request.setAttribute("packageList", packageList);
 		request.setAttribute("page", page);
-		return "packageMoneyList";
+		return "main/packageMoneyList";
 	}
 	@RequestMapping(value="/getPackage.action", method=RequestMethod.POST, produces="application/json;charset=utf-8")
 	public @ResponseBody List<ViewVip> getPackage(String message){

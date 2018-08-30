@@ -54,5 +54,7 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/opencv-3.0.0-1.1.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/slf4j-api-1.5.2.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/slf4j-log4j12-1.5.2.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/filters-2.0.235.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/kaptcha-2.3.2.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

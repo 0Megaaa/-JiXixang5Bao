@@ -12,8 +12,12 @@
 		insert into tbcar (carid,carnum,starttime,usertype,enterimgsrc,paystate) values (#{carId},#{carNum},#{startTime},#{userType},#{enterImgSrc},#{payState})
 	</insert>
 	<select id="findCar"  parameterType="com.soft.bean.TbCar" resultType="com.soft.bean.ViewCarPark">
-		select carnum,paname as usertypename,starttime from tbcar c,tbparameter p where carnum=#{carNum} and c.usertype=p.paid
+		select carnum,paname as usertypename,starttime from tbcar c,tbparameter p where carnum=#{carNum} and c.usertype=p.paid order by starttime desc
 	</select>
-	
-	
+	<select id="findWhite"  parameterType="com.soft.bean.TbCar" resultType="com.soft.bean.ViewCarPark">
+		select * from tbwhitelist where carnum=#{carNum}
+	</select>
+	<select id="findVip"  parameterType="com.soft.bean.TbCar" resultType="com.soft.bean.ViewCarPark">
+		select * from tbvip where carnum=#{carNum}
+	</select>
 </mapper>

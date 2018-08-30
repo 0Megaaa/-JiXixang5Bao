@@ -49,7 +49,7 @@ public class WhiteListHandler {
 		page = whiteListBiz.getWhitePageInfo(page);
 		request.setAttribute("page", page);
 		request.setAttribute("message", request.getAttribute("message"));
-		return "whiteListManage";
+		return "main/whiteListManage";
 	}
 	@RequestMapping("/deleteWhite.action")
 	public String deleteWhite(HttpServletRequest request,String whiteId){
@@ -62,7 +62,7 @@ public class WhiteListHandler {
 	@RequestMapping("/toAddWhiteList.action")
 	public String toAddWhiteList(){
 		
-		return "createWhite";
+		return "main/createWhite";
 	}
 	@RequestMapping("/addWhite.action")
 	public String addWhiteList(HttpServletRequest request,ViewWhiteList view){

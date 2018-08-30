@@ -13,13 +13,13 @@ import com.soft.mapper.CarParkCheckMapper;
 public class CarParkCheckBizImpl implements CarParkCheckBiz {
 
 	@Resource
-	private CarParkCheckMapper carParkMapper;
+	private CarParkCheckMapper carParkCheckMapper;
 
  
 	@Override
 	public List<ViewCarPark> queryAllCarPark() {
 		// TODO Auto-generated method stub
-		List<ViewCarPark> list = carParkMapper.findAll();
+		List<ViewCarPark> list = carParkCheckMapper.findAll();
 		return list;
 	}
 

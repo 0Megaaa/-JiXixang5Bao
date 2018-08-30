@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -48,9 +49,11 @@ public class CarLoginHandler {
 		String fileName = (String)request.getAttribute("file");
 		File file=new File(path+"//"+fileName);
 		
-		System.out.println(file.getAbsolutePath());
-		
-		PlateRecognition pr=new PlateRecognitionImpl("E:\\eclipse\\park\\src\\resources");//
+		File f = new File(this.getClass().getResource("/").getPath());
+		String spaceName=f.toString().split("park")[0].substring(3,f.toString().split("park")[0].length()-64);
+		String resourcePath = f.toString().split(":")[0]+":/"+spaceName+"/"+"park/src/resources";
+		System.out.println(resourcePath);
+		PlateRecognition pr=new PlateRecognitionImpl(resourcePath);
 		Map<String,Plate> ps= pr.plateRecognize(file.getAbsolutePath());
 		String carNum = null;
 		for(Plate p:ps.values()){
@@ -61,9 +64,19 @@ public class CarLoginHandler {
 		car.setCarNum(carNum);
 		car.setStartTime(time);
 		car.setEnterImgSrc(file.getAbsolutePath());
-		car.setPayState(7);
+		
 		//需要进行用户类型判断
-		car.setUserType(2);
+		if(carLoginBiz.findWhite(car).size()==0 && carLoginBiz.findVip(car).size()==0){
+			car.setUserType(2);
+			car.setPayState(7);
+		}else if(carLoginBiz.findWhite(car).size()!=0){
+			car.setUserType(4);
+			car.setPayState(6);
+		}else if(carLoginBiz.findVip(car).size()!=0){
+			car.setUserType(3);
+			car.setPayState(6);
+		}
+		
 		carLoginBiz.addCar(car);
 		viewCarParkcar = carLoginBiz.findCar(car).get(0);
 		
@@ -72,7 +85,7 @@ public class CarLoginHandler {
 		request.setAttribute("message", message);
 		request.setAttribute("flag", 1);
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("carLogin");
+		mav.setViewName("main/carLogin");
 		return mav;
 	}
 	@RequestMapping("/beforePark.action")

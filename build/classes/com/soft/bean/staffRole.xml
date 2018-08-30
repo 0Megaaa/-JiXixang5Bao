@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
+	"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+	<mapper namespace="com.soft.mapper.StaffRoleMapper">
+	
+
+	<select id="findallview" resultType="com.soft.bean.ViewTbStaffRole" parameterType="com.soft.bean.ViewTbStaffRole">
+		select * from viewtbstaffrole 
+	</select>
+	
+	<update id="roleupdate" parameterType="com.soft.bean.TbStaff">
+	update tbstaff set staffrole =#{staffRole} where staffid=#{staffId}
+	</update>
+	
+	
+</mapper>
