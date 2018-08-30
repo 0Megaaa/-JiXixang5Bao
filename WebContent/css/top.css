@@ -1,0 +1,41 @@
+*{
+	margin:0;
+	padding:0;  
+	}
+h1{
+	color:#600;
+	}
+.title{
+	font-size:36px;
+	margin:20px auto;
+	text-align:center;
+}
+.bar{
+	margin:0px auto;
+	width:100%;
+	height:30px;
+ 	background-color:#b63b4d;
+	}
+.time{
+	float:right;
+	}	
+#clock{
+	float:right;
+}
+#clock img{
+
+	width:25px;;
+	height:25px;
+	
+}
+.bar ul{
+	list-style-type:none;
+	text-align:center;	
+	}
+.bar ul li{
+	display:inline-block;
+	margin:3px 6px;
+	color:#FFF
+}
+
+	

@@ -599,7 +599,8 @@ ul.tpl-dropdown-content .tpl-dropdown-menu-messages-item .menu-messages-content 
   width: 100%;
 }
 .tpl-login-logo {
-  max-width: 159px;
+  max-width: 400px;
+  width: 1000px;
   height: 205px;
   margin: 0 auto;
   margin-bottom: 20px;
