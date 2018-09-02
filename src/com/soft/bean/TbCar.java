@@ -16,6 +16,7 @@ private String startTime;
 	private long payChannel;
 	private long  money;
 	private String totalTime;
+	private String msg;
 	public long getCarId() {
 		return carId;
 	}
@@ -96,8 +97,16 @@ private String startTime;
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	public String getMsg() {
+		return msg;
+	}
+	public void setMsg(String msg) {
+		this.msg = msg;
+	}
 	public TbCar(long carId, String carNum, String startTime, String endTime, long userType, long payState,
-			String enterImgSrc, String outImgSrc, String parkImgSrc, long payChannel, long money, String totalTime) {
+			String enterImgSrc, String outImgSrc, String parkImgSrc, long payChannel, long money, String totalTime,
+			String msg) {
 		super();
 		this.carId = carId;
 		this.carNum = carNum;
@@ -111,6 +120,7 @@ private String startTime;
 		this.payChannel = payChannel;
 		this.money = money;
 		this.totalTime = totalTime;
+		this.msg = msg;
 	}
 
 }

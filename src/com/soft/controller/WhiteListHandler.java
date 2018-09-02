@@ -51,6 +51,13 @@ public class WhiteListHandler {
 		request.setAttribute("message", request.getAttribute("message"));
 		return "main/whiteListManage";
 	}
+	@RequestMapping("/allWhiteList.action")
+	public String findAllList(HttpServletRequest request,Page<ViewWhiteList> page){
+		page = whiteListBiz.getAllWhitePageInfo(page);
+		request.setAttribute("page", page);
+		request.setAttribute("message", request.getAttribute("message"));
+		return "main/whiteListManage";
+	}
 	@RequestMapping("/deleteWhite.action")
 	public String deleteWhite(HttpServletRequest request,String whiteId){
 		long id = Integer.valueOf(whiteId);
@@ -66,11 +73,11 @@ public class WhiteListHandler {
 	}
 	@RequestMapping("/addWhite.action")
 	public String addWhiteList(HttpServletRequest request,ViewWhiteList view){
-		String time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+		String time = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 		view.setStartDate(time);
 		whiteListBiz.createWhite(view);
 		message = "新增成功";
 		request.setAttribute("message", message);
-		return "forward:/whiteList/whiteList.action";
+		return "forward:/whiteList/allWhiteList.action";
 	}
 }

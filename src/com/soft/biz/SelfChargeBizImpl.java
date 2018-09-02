@@ -131,7 +131,7 @@ tbCar2.setTotalTime((String )map1.get("停车时长"));
 		tbCharge.setMoney(tbCar.getMoney());
 		tbCharge.setStaffId(0);
 	
-
+		tbCharge.setChType("自助");
 		selfChargeMapper.insertTbCharge(tbCharge);
 
 		

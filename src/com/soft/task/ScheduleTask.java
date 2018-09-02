@@ -18,8 +18,9 @@ public class ScheduleTask {
 	private BillBiz billBizImpl;
 		
 	//早班(8:00~16:00)
-	@Scheduled (cron = "0 0 16 * * ? ")
+	@Scheduled (cron = "50 17 14 * * ? ")
     public void billForMorning() {
+		System.out.println("3333333333333333333333");
 		//step1 查出早班所有的收费记录，查询charge表，条件是时间，返回一个list
 		List<ViewBill> lst = billBizImpl.getMorningList();
 		for (int i = 0; i < lst.size(); i++) {

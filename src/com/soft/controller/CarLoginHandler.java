@@ -70,10 +70,10 @@ public class CarLoginHandler {
 			car.setPayState(7);
 		}else if(carLoginBiz.findWhite(car).size()!=0){
 			car.setUserType(4);
-			car.setPayState(6);
+			car.setPayState(7);
 		}else if(carLoginBiz.findVip(car).size()!=0){
 			car.setUserType(3);
-			car.setPayState(6);
+			car.setPayState(7);
 		}
 		
 		carLoginBiz.addCar(car);

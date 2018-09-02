@@ -53,8 +53,8 @@ update  tbparkplace set carid=null    where  parkid=#{parkId}
 
 <insert id="insertTbCharge"  parameterType="com.soft.bean.TbCharge" >
 
-insert into tbcharge (CHID,CARID,MONEY,CHARGETIME,STAFFID)
-values(SEQUENCE1.nextval,#{carId},#{money},#{chargeTime},0)
+insert into tbcharge (CHID,CARID,MONEY,CHARGETIME,STAFFID,chtype)
+values(SEQUENCE1.nextval,#{carId},#{money},#{chargeTime},0,#{chType})
 
 </insert>
 

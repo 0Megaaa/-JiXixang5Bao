@@ -17,6 +17,8 @@ public interface WhiteListMapper {
 	
 	public List<ViewWhiteList> getWhiteList(Page<?> p,RowBounds rb);
 	public List<ViewWhiteList> getWhiteList(Page<?> p);
+	public List<ViewWhiteList> getAllWhiteList(Page<?> p);
+	public List<ViewWhiteList> getAllWhiteList(Page<?> p,RowBounds rb);
 	public void deleteWhite(long whiteId);
 	public void createWhite(ViewWhiteList view);
 }

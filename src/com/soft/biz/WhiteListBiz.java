@@ -31,6 +31,17 @@ public class WhiteListBiz {
 		page.setTotalPage(all%size ==0?all/size:all/size+1);	//总页数
 		return page;
 	}
+	public Page<ViewWhiteList> getAllWhitePageInfo(Page page) {
+		page.setCurPage(page.getCurPage()==0?1:page.getCurPage());
+		page.setPageSize(5);
+		RowBounds rb = new RowBounds((page.getCurPage()-1)*page.getPageSize(),page.getPageSize());
+		page.setPageList(mapper.getAllWhiteList(page,rb));
+		page.setTotalRecord(mapper.getAllWhiteList(page).size());
+		int all = page.getTotalRecord();
+		int size = page.getPageSize();
+		page.setTotalPage(all%size ==0?all/size:all/size+1);	//总页数
+		return page;
+	}
 	public void deleteWhite(long whiteId){
 		mapper.deleteWhite(whiteId);
 	}

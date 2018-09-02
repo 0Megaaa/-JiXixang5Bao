@@ -44,14 +44,14 @@
 	var message = "${message == null ? "" : message}";
 	if(message != "")
 	{
-		alert(message);
-		var i = setTimeout('check()',5000);
+		
+		var i = setTimeout('check()',2000);
 
 		function check() {
 			
 			 if( $('#up')[0].src == 'http://localhost:8080/park/assets/img/up.jpg') {
 				 $('#up').attr('src','${pageContext.request.contextPath}/assets/img/down.jpg');
-				 alert("车闸关闭了!");
+				
 			}
 		 }
 		/* window.clearTimeout(i); */

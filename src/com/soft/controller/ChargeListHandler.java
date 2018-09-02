@@ -61,6 +61,7 @@ public class ChargeListHandler {
 		request.setAttribute("message", request.getAttribute("message"));
 		return "main/chargeList";
 	}
+	
 	@RequestMapping("/packageMoneySum.action")
 	public String packageMoneySum(HttpServletRequest request,Page<ViewVip> page){
 		

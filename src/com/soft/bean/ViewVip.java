@@ -9,6 +9,7 @@ public class ViewVip {
 	private long vipState;
 	private String paTime;
 	private long paPrice;
+	private long money;
 	public ViewVip() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -22,6 +23,13 @@ public class ViewVip {
 		this.vipState = vipState;
 		this.paTime = paTime;
 		this.paPrice = paPrice;
+	}
+	
+	public long getMoney() {
+		return money;
+	}
+	public void setMoney(long money) {
+		this.money = money;
 	}
 	public long getVipId() {
 		return vipId;

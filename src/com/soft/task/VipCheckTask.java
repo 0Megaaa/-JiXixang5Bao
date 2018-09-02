@@ -16,7 +16,7 @@ public class VipCheckTask {
 			
 
 //    @Scheduled (cron = "0/10 * * * * ? ")
-	@Scheduled (cron = "0 0 0 * * ? ")
+	@Scheduled (cron = "35 23 14 * * ? ")
     public void doVipChenck() {
     	
     	System.out.println("start");
