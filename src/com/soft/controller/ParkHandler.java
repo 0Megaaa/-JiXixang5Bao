@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -41,8 +42,16 @@ public class ParkHandler {
 		ModelAndView modelAndView = new ModelAndView();
 
 		list = CarParkBizImpl.fingAllCarPark();
+for(int i=0;i<list.size();i++){
+	
+	Random a=new Random();
 
+	list.get(i).setImgIndex(	a.nextInt(5)+1);
+	
+	
+}
 		request.setAttribute("list", list);
+
 		modelAndView.setViewName("user/userIndex");
 		return modelAndView;
 
@@ -53,7 +62,7 @@ public class ParkHandler {
 		ModelAndView modelAndView = new ModelAndView();
 		int x1 = (int) (x / 100);
 		int y1 = (int) (y / 50);
-		System.out.println(x+"z"+y);
+	
 		viewCarPark.setParkX(x1);
 		viewCarPark.setParkY(y1);
 		ViewCarPark viewCarPark1 = CarParkBizImpl.findCarParkMsg(viewCarPark);
@@ -131,15 +140,16 @@ public class ParkHandler {
 			String str = (new SimpleDateFormat("yyyyMMddHHmmssSSS")).format(day);*/
 			//上传图片
 			String filename = fileact.getOriginalFilename();
-			String path = "E:\\upload\\" + carNum;
-			File destFile1 = new File(path);
-			if (!destFile1.exists()) {
-				destFile1.mkdirs();
+			String time = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+			String path = request.getRealPath("/upload/"+time);
+			File destFile = new File(path);
+			if(!destFile.exists()){
+				destFile.mkdirs();
 			}
-			File destFile = new File(path, filename);
+			File destFile1 = new File(path, filename);
 			
 				try {
-					fileact.transferTo(destFile);
+					fileact.transferTo(destFile1);
 				} catch (IllegalStateException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -149,7 +159,7 @@ public class ParkHandler {
 				}
 	
 				//将src插入数据库中。
-				tbCar2.setParkImgSrc(destFile.getAbsolutePath());
+				tbCar2.setParkImgSrc(destFile1.getAbsolutePath());
 	
 				CarParkBizImpl.updateCarParkSrc	(tbCar2);
 			

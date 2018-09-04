@@ -26,6 +26,19 @@ public class ParkModifyBizImpl implements ParkModifyBiz {
 		
 	}
 
+	@Override
+	public long findAllNum() {
+		// TODO Auto-generated method stub
+		return modifyParkMapper.findAllNum();
+	}
+
+	@Override
+	public void updateUnPrefixById(TbParkPlace ParkPlace) {
+		modifyParkMapper.updateUnPrefixById(ParkPlace);
+		// TODO Auto-generated method stub
+		
+	}
+
  
  
 

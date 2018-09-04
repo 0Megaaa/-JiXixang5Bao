@@ -46,9 +46,11 @@ int insertTbCharge(TbCharge tbCharge);
 
 TbRule queryTbRule();
 
+//通过车配编号找字段
+TbCar findByCarNum(TbCar tbCar);
 
-
-
+//出场更新车位信息。
+int updateCarOutMsg(TbCar tbCar);
 
 
 }

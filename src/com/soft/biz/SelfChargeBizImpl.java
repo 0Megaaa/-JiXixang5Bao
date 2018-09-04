@@ -17,6 +17,7 @@ import com.soft.bean.TbWhiteList;
 import com.soft.mapper.CarParkMapper;
 import com.soft.mapper.SelfChargeMapper;
 import com.soft.tools.ChargingTool;
+import com.soft.tools.TestDateMinus;
 
 @Service
 public class SelfChargeBizImpl implements SelfChargeBiz {
@@ -136,6 +137,123 @@ tbCar2.setTotalTime((String )map1.get("停车时长"));
 
 		
 		return 0;
+	}
+
+	@Override
+	public TbCar queryCarOutMsg(String carNum) {
+		TbCar tbCar2 = selfChargeMapper.queryCarId(carNum);
+		if (tbCar2 != null) {
+
+			if (tbCar2.getEndTime() != null) {
+				Date day = new Date();
+				SimpleDateFormat date1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				String endTime = date1.format(day);
+				long startT = TestDateMinus.fromDateStringToLong(endTime); // 定义测试时间1
+				long endT = TestDateMinus.fromDateStringToLong(tbCar2.getEndTime()); // 定义测试时间2
+				long ss = (startT - endT) / 1000; // 共计秒数
+
+				if (ss > 1800) {
+					tbCar2.setStartTime(tbCar2.getEndTime());
+					tbCar2.setEndTime(endTime);
+					
+
+					// 计算金额。
+					// 先放着，直接写金额代替。
+					// 用金额5元。
+
+					// 查询规则表
+					TbRule tbRule = selfChargeMapper.queryTbRule();
+					Map<String, Object> map1 = null;
+					try {
+						map1 = ChargingTool.chargingMethod(tbCar2, tbRule);
+
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
+					tbCar2.setMoney((long) map1.get("停车费用"));
+					tbCar2.setTotalTime((String) map1.get("停车时长"));
+				}else{
+					tbCar2.setMoney(0);
+					return tbCar2;
+					
+					
+				}
+			}else{
+				
+				Date day = new Date();
+				SimpleDateFormat date1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				String endTime = date1.format(day);
+				tbCar2.setEndTime(endTime);
+				// 计算金额。
+				// 先放着，直接写金额代替。
+				// 用金额5元。
+				// 查询规则表
+				TbRule tbRule = selfChargeMapper.queryTbRule();
+				Map<String, Object> map1 = null;
+				try {
+					map1 = ChargingTool.chargingMethod(tbCar2, tbRule);
+
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+				tbCar2.setMoney((long) map1.get("停车费用"));
+				tbCar2.setTotalTime((String) map1.get("停车时长"));
+				
+				
+				
+			}
+		}
+		return tbCar2;
+	}
+
+	@Override
+	public int updateCarOutMsg(TbCar tbCar) {
+		tbParkPlace.setCarId(tbCar.getCarId());
+		TbParkPlace tbParkPlace2 = carParkMapper.queryCarPlace(tbParkPlace);
+
+		// 更新车位置。（出场时才用到）
+		 selfChargeMapper.updatePlace(tbParkPlace2);
+
+		/* 更新车状态 */
+		selfChargeMapper.updateCarOutMsg(tbCar);
+		// 插入收费记录。
+
+		tbCharge.setCarId(tbCar.getCarId());
+		tbCharge.setChargeTime(tbCar.getEndTime());
+		
+		tbCharge.setMoney(tbCar.getMoney());
+		tbCharge.setStaffId(0);
+		tbCharge.setChType("临时");
+		selfChargeMapper.insertTbCharge(tbCharge);
+
+		return 0;
+	}
+
+	@Override
+	public int updateWhiteCarOutMsg(TbCar tbCar) {
+		tbParkPlace.setCarId(tbCar.getCarId());
+		TbParkPlace tbParkPlace2 = carParkMapper.queryCarPlace(tbParkPlace);
+
+		// 更新车位置。（出场时才用到）
+		 selfChargeMapper.updatePlace(tbParkPlace2);
+
+		/* 更新车状态 */
+		selfChargeMapper.updateCarOutMsg(tbCar);
+		// 插入收费记录。
+
+
+		return 0;
+	}
+
+	@Override
+	public TbCar findByCarNum(TbCar tbCar) {
+		// TODO Auto-generated method stub
+		
+				return selfChargeMapper.findByCarNum(tbCar);
 	}
 
 }

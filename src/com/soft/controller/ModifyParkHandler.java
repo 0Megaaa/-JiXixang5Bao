@@ -28,7 +28,9 @@ public class ModifyParkHandler {
 
 	@RequestMapping("/inIt.action")
 	public String carpark(HttpServletRequest request) {
-		return "user/modifyPark";
+		long parkNum = ParkModifyBizImpl.findAllNum();
+		request.setAttribute("parkNum", parkNum);
+		return "manage/modifyPark";
 	}
 
 	// 跳转修改车位编号
@@ -42,35 +44,58 @@ public class ModifyParkHandler {
 		long prifix3Num = Long.parseLong(parkNum.getPrifix3Num());
 		String prifix4 = parkNum.getPrifix4();
 		long prifix4Num = Long.parseLong(parkNum.getPrifix4Num());
+		long unPrifixNum = Long.parseLong(parkNum.getUnPrifixNum());
+		
 		
 		ParkModifyBizImpl.deleted();
 		long parkId = 0;
+		long Num1 = 0;
+		long Num2 = 0;
+		long Num3 = 0;
+		long Num4 = 0;
+		long Num5 = 0;
 		for (int i = 0; i < prifix1Num; i++) {
 			parkId++;
+			Num1++;
 			ParkPlace.setParkId(parkId);
 			ParkPlace.setPrefix(prifix1);
+			ParkPlace.setParkNum(String.format("%04d", Num1));
 			ParkModifyBizImpl.updateById(ParkPlace);
 		}
 		for (int i = 0; i < prifix2Num; i++) {
 			parkId++;
+			Num2++;
 			ParkPlace.setParkId(parkId);
 			ParkPlace.setPrefix(prifix2);
+			ParkPlace.setParkNum(String.format("%04d", Num2));
 			ParkModifyBizImpl.updateById(ParkPlace);
 		}
 		for (int i = 0; i < prifix3Num; i++) {
 			parkId++;
+			Num3++;
 			ParkPlace.setParkId(parkId);
 			ParkPlace.setPrefix(prifix3);
+			ParkPlace.setParkNum(String.format("%04d", Num3));
 			ParkModifyBizImpl.updateById(ParkPlace);
 		}
 		for (int i = 0; i < prifix4Num; i++) {
 			parkId++;
+			Num4++;
 			ParkPlace.setParkId(parkId);
 			ParkPlace.setPrefix(prifix4);
+			ParkPlace.setParkNum(String.format("%04d", Num4));
 			ParkModifyBizImpl.updateById(ParkPlace);
 		}
+		
+		for (int i = 0; i < unPrifixNum; i++) {
+			parkId++;
+			Num5++;
+			ParkPlace.setParkId(parkId);
+			ParkPlace.setParkNum(String.format("%04d", Num5));
+			ParkModifyBizImpl.updateUnPrefixById(ParkPlace);
+		}
 
-		return "user/inrule";
+		return "manage/modifyPark";
 	}
 
 	/*

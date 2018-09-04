@@ -1,5 +1,6 @@
 package com.soft.biz;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -20,9 +21,12 @@ public class CarParkBizImpl implements CarParkBiz {
 
 	@Override
 	public List<ViewCarPark> fingAllCarPark() {
+	
 		// TODO Auto-generated method stub
 		List<ViewCarPark> list = carParkMapper.queryAllCarPark();
-
+		
+		
+		
 		return list;
 	}
 

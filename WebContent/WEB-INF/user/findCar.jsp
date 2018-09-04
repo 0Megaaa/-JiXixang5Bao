@@ -82,6 +82,8 @@ var context = canvas.getContext("2d");
 context.beginPath();
 context.fillStyle="#F5270B";
 context.arc("${type.getX()}"*25+12,"${type.getY()}"*25+12,5,0,2*Math.PI);
+
+
 context.fill();
 
 
@@ -90,7 +92,6 @@ context.fill();
 
 <c:forEach items="${list}" var="type">
 /* console.log("${type.getPrefix()}"); */
-
 context.rect(100*"${type.getParkX()}",50*"${type.getParkY()}",100,50);
 
 context.stroke();
@@ -104,7 +105,18 @@ context.font="20px Times New Roman";
 context.fillStyle="#0F0F0F";
 
 context.fillText("${type.getCarNum()}", 100*"${type.getParkX()}"+8,50*"${type.getParkY()}"+30);
- 
+var imgObj = new Image();
+console.log(${type.getImgIndex()});
+/*${type.getImgIndex()}  */
+ imgObj.src = "${pageContext.request.contextPath}/carImg/${type.getImgIndex()}.png";   
+ /*context.drawImage(imgObj,100*"${type.getParkX()}",50*"${type.getParkY()}",100,50);    
+ context.stroke(); */ 
+ imgObj.onload=function(){
+	 context.drawImage(imgObj,100*"${type.getParkX()}",50*"${type.getParkY()}",100,50);
+	 callback(imgObj);
+  /*  var imagedata = context.getImageData(10,10,10,10);
+   context.createImageData(imagedata); */
+ }
 
 </c:if>
 <c:if test="${type.getCarNum()==carNum}">

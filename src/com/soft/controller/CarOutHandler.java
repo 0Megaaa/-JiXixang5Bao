@@ -22,6 +22,7 @@ import com.crenjoy.easypr.core.PlateRecognitionImpl;
 import com.soft.bean.TbCar;
 import com.soft.bean.ViewCarPark;
 import com.soft.biz.CarOutBiz;
+import com.soft.biz.SelfChargeBiz;
 import com.soft.biz.StaffBiz;
 
 @Controller
@@ -29,7 +30,8 @@ import com.soft.biz.StaffBiz;
 public class CarOutHandler {
 	@Resource
 	private CarOutBiz carOutBizImpl;
-
+	@Resource
+	private SelfChargeBiz SelfChargeBizImpl;
 	// @RequestMapping(value = "/readPicture.action")
 	// public String fileact(HttpServletRequest request, String outImgSrc) {
 	//
@@ -92,24 +94,65 @@ public class CarOutHandler {
 				request.setAttribute("Car", Car);
 				carOutBizImpl.addCarOut(Car);
 			}
+			
+			
 		}
 		return "forward:/carOut/findCarOut.action";
 	}
-	
-	
-	
 
 	@RequestMapping(value = "/inIt.action")
 	public String inIt(HttpServletRequest request) {
-		return "user/carOut";
+		request.setAttribute("flag", 2);
+		return "manage/carOut";
 	}
 
 	@RequestMapping(value = "/findCarOut.action")
 	public String findCarOut(HttpServletRequest request) {
-		TbCar Car = (TbCar) request.getAttribute("Car");
-		TbCar CarFull = carOutBizImpl.findCarOut(Car);
-		request.setAttribute("CarFull", CarFull);
-		return "user/carOutPay";
+		 TbCar Car = (TbCar) request.getAttribute("Car");
+//		TbCar CarFull = carOutBizImpl.findCarOut(Car);
+//		request.setAttribute("CarFull", CarFull);
+		
+
+		int i = SelfChargeBizImpl.findList(Car.getCarNum());
+		if (i == 1) {
+			// i=1说明有值，说明是会员。或白名单。
+			String msg = "您是免缴会员，可直接出场！";
+			request.setAttribute("msg", msg);
+			// 更新车状态。为已缴费。
+			// 先通过车号查车id，再根据车id取更新数据。
+			request.setAttribute("flag", 1);
+			TbCar tbCar = SelfChargeBizImpl.findByCarNum(Car);
+			
+			
+			
+			SelfChargeBizImpl.updateWhiteCarOutMsg(tbCar);
+			
+			
+			
+			request.setAttribute("tbCar", tbCar);
+			return "manage/carOut";
+		} else {
+			// 调出缴费记录，计算缴费信息下发，并点击缴费 就缴费。
+			/* paystate=7 */
+			/*
+			 * 有数据下发数据。没数据下发输入车牌号有误，请重新输入。
+			 */
+			TbCar tbCar = SelfChargeBizImpl.queryCarOutMsg(Car.getCarNum());
+			if (tbCar == null) {
+				String msg = "对不起，车号有误！";
+				request.setAttribute("msg", msg);
+				return "manage/carOut";
+			} else {
+				// j就是卡id。 通过卡id去查记录，并计算金额。下发到客户端。
+				request.setAttribute("tbCar", tbCar);
+				SelfChargeBizImpl.updateCarOutMsg(tbCar);
+				
+				request.setAttribute("flag", 1);
+			}
+		}
+
+		return "manage/carOut";
+
 	}
 
 	/*
@@ -119,22 +162,15 @@ public class CarOutHandler {
 	 * System.out.println("2222"); return CarFull; }
 	 */
 
-/*	@RequestMapping(value = "/getPicture.action")
-	@ResponseBody
-	public Map getPicture(HttpServletRequest request, TbCar Car) {
-		Map<String, Object> map = new HashMap<>();
-		// 调用service查询数据库验证登录信息
-		// 判断用户是否存在
-		TbCar TbCar = carOutBizImpl.findCarOut(Car);
-		System.out.println(TbCar.getParkImgSrc());
-		if (TbCar != null) {
-			map.put("message", "success");
-			map.put("TbCar", TbCar);
-			return map;
-		} else {
-			map.put("message", "error");
-		}
-		return map;
-	}*/
+	/*
+	 * @RequestMapping(value = "/getPicture.action")
+	 * 
+	 * @ResponseBody public Map getPicture(HttpServletRequest request, TbCar
+	 * Car) { Map<String, Object> map = new HashMap<>(); // 调用service查询数据库验证登录信息
+	 * // 判断用户是否存在 TbCar TbCar = carOutBizImpl.findCarOut(Car);
+	 * System.out.println(TbCar.getParkImgSrc()); if (TbCar != null) {
+	 * map.put("message", "success"); map.put("TbCar", TbCar); return map; }
+	 * else { map.put("message", "error"); } return map; }
+	 */
 
 }

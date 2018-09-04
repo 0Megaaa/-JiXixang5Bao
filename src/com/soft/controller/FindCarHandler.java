@@ -2,6 +2,7 @@ package com.soft.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -41,8 +42,20 @@ public class FindCarHandler {
 		// 自助设备。
 		ModelAndView modelAndView = new ModelAndView();
 		list = CarParkBizImpl.fingAllCarPark();
+		for(int i=0;i<list.size();i++){
+			
+			Random a=new Random();
 
+			list.get(i).setImgIndex(	a.nextInt(5)+1);
+			
+			
+		}
 		request.setAttribute("list", list);
+		
+		
+		
+		
+		
 		modelAndView.setViewName("user/findCar");
 		return modelAndView;
 
@@ -61,7 +74,7 @@ public class FindCarHandler {
 		// 通过车牌号去查，该车是否在停车位上，如果在，返回坐标，如果不在，下发说：输入的车牌号不正确。
 
 		viewCarPark.setCarNum(carNum);
-		System.out.println(carNum);
+	
 		ViewCarPark viewCarPark1 = CarParkBizImpl.findCarParkMsg2(viewCarPark);
 
 		if (viewCarPark1 == null) {

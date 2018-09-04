@@ -11,4 +11,10 @@ public interface ModifyParkMapper {
 	public void updateById(TbParkPlace ParkPlace);
 	//修改前缀
 //	TbParkPlace findByPrefix(TbParkPlace ParkPlace);
+	//情况前缀
+	//查找所有车位数量
+	public long findAllNum();
+	//修改没有编号的车位
+	public void updateUnPrefixById(TbParkPlace ParkPlace);
+	
 }

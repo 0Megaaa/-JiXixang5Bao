@@ -12,6 +12,7 @@ import com.soft.bean.TbCar;
 import com.soft.bean.TbParkPlace;
 import com.soft.bean.ViewCarPark;
 import com.soft.biz.CarParkCheckBiz;
+import com.soft.biz.PayCheckParkBiz;
 
 @Controller
 @RequestMapping("/parkPlace")
@@ -25,6 +26,9 @@ public class ParkCheckHandler {
 	private TbCar tbCar;
 	@Resource
 	private TbParkPlace tbParkPlace;
+	
+	@Resource
+	private PayCheckParkBiz payCheckParkBizImpl;
 	// 拉取停车场的车位及车记录。
 
 	
@@ -32,9 +36,13 @@ public class ParkCheckHandler {
 	public String carpark(HttpServletRequest request) {
 
 		list = carParkCheckBizImpl.queryAllCarPark();
-		
+		String allPark = String.valueOf(payCheckParkBizImpl.allPark());
+		String bePark = String.valueOf(payCheckParkBizImpl.bePark());
 		request.setAttribute("list", list);
-		return "user/showMap";
+		request.setAttribute("allPark", allPark);
+		request.setAttribute("bePark", bePark);
+		
+		return "manage/showMap";
 
 	}
 

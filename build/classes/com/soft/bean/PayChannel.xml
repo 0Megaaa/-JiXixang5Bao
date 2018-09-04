@@ -3,14 +3,46 @@
 	"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 <mapper namespace="com.soft.mapper.PayChannelMapper">
 
-
-	<select id="findAotuChannel"  resultType="long">
-	select SUM(money) from tbcar  where paychannel = 1
+ 
+	
+	<select id="findAutoChannel"  resultType="com.soft.bean.ViewAutoService" parameterType="com.soft.bean.ViewBar">
+	select sum(decode(to_char(counttime,'mm'),'01',money,0)) m1,sum(decode(to_char(counttime,'mm'),'02',money,0)) m2,
+       sum(decode(to_char(counttime,'mm'),'03',money,0)) m3,sum(decode(to_char(counttime,'mm'),'04',money,0)) m4, 
+       sum(decode(to_char(counttime,'mm'),'05',money,0)) m5,sum(decode(to_char(counttime,'mm'),'06',money,0)) m6,
+       sum(decode(to_char(counttime,'mm'),'07',money,0)) m7,sum(decode(to_char(counttime,'mm'),'08',money,0)) m8,
+       sum(decode(to_char(counttime,'mm'),'09',money,0)) m9,sum(decode(to_char(counttime,'mm'),'10',money,0)) m10,
+       sum(decode(to_char(counttime,'mm'),'11',money,0)) m11,sum(decode(to_char(counttime,'mm'),'12',money,0)) m12
+           from tbcharge
+           where to_char(counttime,'yyyy')= #{year} and chtype = #{autoChannel}
+	
 	</select>
-
-	<select id="findPhoneChannel" resultType="long" >
-		select SUM(money) from tbcar where paychannel = 2
+		<select id="findMonthServic"  resultType="com.soft.bean.ViewMonthService" parameterType="com.soft.bean.ViewBar">
+	select sum(decode(to_char(counttime,'mm'),'01',money,0)) m1,sum(decode(to_char(counttime,'mm'),'02',money,0)) m2,
+       sum(decode(to_char(counttime,'mm'),'03',money,0)) m3,sum(decode(to_char(counttime,'mm'),'04',money,0)) m4, 
+       sum(decode(to_char(counttime,'mm'),'05',money,0)) m5,sum(decode(to_char(counttime,'mm'),'06',money,0)) m6,
+       sum(decode(to_char(counttime,'mm'),'07',money,0)) m7,sum(decode(to_char(counttime,'mm'),'08',money,0)) m8,
+       sum(decode(to_char(counttime,'mm'),'09',money,0)) m9,sum(decode(to_char(counttime,'mm'),'10',money,0)) m10,
+       sum(decode(to_char(counttime,'mm'),'11',money,0)) m11,sum(decode(to_char(counttime,'mm'),'12',money,0)) m12
+           from tbcharge
+           where to_char(counttime,'yyyy')= #{year} and chtype = #{monthServic}
+	
 	</select>
+	
+	
+		<select id="findTollChannel"  resultType="com.soft.bean.ViewTollChannel" parameterType="com.soft.bean.ViewBar">
+	select sum(decode(to_char(counttime,'mm'),'01',money,0)) m1,sum(decode(to_char(counttime,'mm'),'02',money,0)) m2,
+       sum(decode(to_char(counttime,'mm'),'03',money,0)) m3,sum(decode(to_char(counttime,'mm'),'04',money,0)) m4, 
+       sum(decode(to_char(counttime,'mm'),'05',money,0)) m5,sum(decode(to_char(counttime,'mm'),'06',money,0)) m6,
+       sum(decode(to_char(counttime,'mm'),'07',money,0)) m7,sum(decode(to_char(counttime,'mm'),'08',money,0)) m8,
+       sum(decode(to_char(counttime,'mm'),'09',money,0)) m9,sum(decode(to_char(counttime,'mm'),'10',money,0)) m10,
+       sum(decode(to_char(counttime,'mm'),'11',money,0)) m11,sum(decode(to_char(counttime,'mm'),'12',money,0)) m12
+           from tbcharge
+           where to_char(counttime,'yyyy')= #{year} and chtype = #{tollChannel}
+	
+	</select>
+ 
+
+  
 	
  
 

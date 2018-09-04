@@ -29,6 +29,7 @@ import com.crenjoy.easypr.core.PlateRecognitionImpl;
 import com.soft.bean.TbCar;
 import com.soft.bean.ViewCarPark;
 import com.soft.biz.CarLoginBiz;
+import com.soft.tools.OcrUtil;
 
 
 @Controller 
@@ -41,6 +42,8 @@ public class CarLoginHandler {
 	private TbCar car;
 	@Resource
 	private ViewCarPark viewCarParkcar;
+	@Resource
+	private OcrUtil ocr;
 	private String message;
 	//localhost:8080/park/carLogin/hello.action
 	@RequestMapping("/carLogin.action")
@@ -49,15 +52,8 @@ public class CarLoginHandler {
 		String fileName = (String)request.getAttribute("file");
 		File file=new File(path+"//"+fileName);
 		
-		String a = getClass().getProtectionDomain().getCodeSource().getLocation().getPath();
-		String resourcePath = a.substring(1) + "resources";
+		String carNum = ocr.getCarNum(path, fileName).substring(ocr.getCarNum(path, fileName).length()-12, ocr.getCarNum(path, fileName).length()-5);
 
-		PlateRecognition pr=new PlateRecognitionImpl(resourcePath);
-		Map<String,Plate> ps= pr.plateRecognize(file.getAbsolutePath());
-		String carNum = null;
-		for(Plate p:ps.values()){
-			carNum = p.toString().substring(12, 18);	
-		}
 		System.out.println(carNum);
 		String time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
 		car.setCarNum(carNum);
@@ -139,7 +135,8 @@ public class CarLoginHandler {
 	@RequestMapping(value="/fileact.action", method=RequestMethod.POST)
 	public String fileact(HttpServletRequest request,MultipartFile fileact){
 		String filename = fileact.getOriginalFilename();
-		String path = request.getRealPath("/upload");
+		String time = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+		String path = request.getRealPath("/upload/"+time);
 		File destFile = new File(path);
 		if(!destFile.exists()){
 			destFile.mkdirs();

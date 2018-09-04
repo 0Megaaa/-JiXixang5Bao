@@ -24,6 +24,8 @@ public class ViewCarPark {
 			 private long parkState;
 			 private long parkX;
 			 private long parkY;
+			 
+			 private Integer imgIndex;
 			public long getCarId() {
 				return carId;
 			}
@@ -123,6 +125,16 @@ public class ViewCarPark {
 			public void setParkY(long parkY) {
 				this.parkY = parkY;
 			}
+			
+			
+			public Integer getImgIndex() {
+				return imgIndex;
+			}
+
+			public void setImgIndex(Integer imgIndex) {
+				this.imgIndex = imgIndex;
+			}
+
 			public ViewCarPark() {
 				super();
 				// TODO Auto-generated constructor stub
@@ -146,6 +158,30 @@ public class ViewCarPark {
 				this.parkState = parkState;
 				this.parkX = parkX;
 				this.parkY = parkY;
+			}
+
+			public ViewCarPark(long carId, String carNum, String startTime, String endTime, long userType,
+					long payState, String enterImgSrc, String outImgSrc, String parkImgSrc, String userTypeName,
+					long parkId, String prefix, String parkNum, long parkState, long parkX, long parkY,
+					Integer imgIndex) {
+				super();
+				this.carId = carId;
+				this.carNum = carNum;
+				this.startTime = startTime;
+				this.endTime = endTime;
+				this.userType = userType;
+				this.payState = payState;
+				this.enterImgSrc = enterImgSrc;
+				this.outImgSrc = outImgSrc;
+				this.parkImgSrc = parkImgSrc;
+				this.userTypeName = userTypeName;
+				this.parkId = parkId;
+				this.prefix = prefix;
+				this.parkNum = parkNum;
+				this.parkState = parkState;
+				this.parkX = parkX;
+				this.parkY = parkY;
+				this.imgIndex = imgIndex;
 			}
 			 
 			 

@@ -48,41 +48,60 @@
 		</c:if>
 </div>
 	
-
-
-
 </body>
 <script type="text/javascript">
  
 var canvas = document.getElementById("canvas");
 var context = canvas.getContext("2d");
-
+var imgObj = new Image();
 
 <c:forEach items="${list}" var="type">
 /* console.log("${type.getPrefix()}"); */
 
     context.rect(100*"${type.getParkX()}",50*"${type.getParkY()}",100,50);
-
+ 
 context.stroke();
 
 /*判断是否有车停  */
 <c:if test="${type.getCarId()!=''}">
-console.log("${type.getPrefix()}");
+
 context.fillStyle="#F5270B";
 context.fillRect(100*"${type.getParkX()}",50*"${type.getParkY()}",100,50);
-context.fillStyle="#0F0F0F";
-context.font="20px Times New Roman";
-context.fillText("${type.getCarNum()}", 100*"${type.getParkX()}"+8,50*"${type.getParkY()}"+30);
- 
 
+ context.fillStyle="#0F0F0F";
+context.font="20px Times New Roman";
+context.fillText("${type.getCarNum()}", 100*"${type.getParkX()}"+8,50*"${type.getParkY()}"+30); 
+var imgObj = new Image();
+console.log(${type.getImgIndex()});
+/*${type.getImgIndex()}  */
+ imgObj.src = "${pageContext.request.contextPath}/carImg/${type.getImgIndex()}.png";   
+ /*context.drawImage(imgObj,100*"${type.getParkX()}",50*"${type.getParkY()}",100,50);    
+ context.stroke(); */ 
+ imgObj.onload=function(){
+	 context.drawImage(imgObj,100*"${type.getParkX()}",50*"${type.getParkY()}",100,50);
+	 callback(imgObj);
+  /*  var imagedata = context.getImageData(10,10,10,10);
+   context.createImageData(imagedata); */
+ }
+
+/*
+imgObj.src = "${pageContext.request.contextPath}/carImg/1.png"; 
+ context.drawImage(imgObj,100*"${type.getParkX()}",50*"${type.getParkY()}",100,50);//this即是imgObj,保持图片的原始大小：470*480   
+  */
 </c:if>
 
 
 <c:if test="${type.getCarId()==''}">
 /* console.log("${type.getPrefix()}"); */
 context.fillStyle="#00CD00";
-context.fillRect(100*"${type.getParkX()}",50*"${type.getParkY()}",100,50);
 
+context.fillRect(100*"${type.getParkX()}",50*"${type.getParkY()}",100,50);
+//没停车的把车位弄上去。
+context.fillStyle="#000000";
+console.log("${type.getPrefix()}");
+context.font="20px Times New Roman";
+  context.fillText("${type.getPrefix()}${type.getParkNum()}", 100*"${type.getParkX()}"+8,50*"${type.getParkY()}"+30);
+   
 
 </c:if>
 

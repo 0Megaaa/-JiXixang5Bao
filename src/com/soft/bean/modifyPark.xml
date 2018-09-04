@@ -5,13 +5,24 @@
 
 
 	<select id="deleted" >
-	update tbparkplace set prefix=null
+	update tbparkplace set prefix=null,parknum=null
 	</select>
 
 	<update id="updateById" parameterType="com.soft.bean.TbParkPlace">
 		update tbparkplace set
-		prefix=#{prefix}
+		prefix=#{prefix},parknum=#{parkNum}
 		where parkid =#{parkId}
 	</update>
+	
+	<update id="updateUnPrefixById" parameterType="com.soft.bean.TbParkPlace">
+		update tbparkplace set
+		parknum=#{parkNum}
+		where parkid =#{parkId}
+	</update>
+
+    <select id="findAllNum"  resultType="long">
+		select count(*) from tbparkplace  
+	</select>
+
 
 </mapper>
