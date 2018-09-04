@@ -9,14 +9,14 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>用户管理</title>
-    <meta name="description" content="这是一个 用户管理页面">
+    <title>权限配置</title>
+    <meta name="description" content="这是一个 权限配置页面">
     <meta name="keywords" content="index">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="renderer" content="webkit">
     <meta http-equiv="Cache-Control" content="no-siteapp" />
     <link rel="icon" type="image/png" href="<%=path %>/<%=path %>/assets/i/favicon.png">
-    <link rel="apple-touch-icon-precomposed" href="<%=path %>/<%=path %>/assets/i/app-icon72x72@2x.png">
+    <link rel="apple-touch-icon-precomposed" href="<%=path %>/assets/i/app-icon72x72@2x.png">
     <meta name="apple-mobile-web-app-title" content="Amaze UI" />
     <script src="<%=path %>/assets/js/echarts.min.js"></script>
     <link rel="stylesheet" href="<%=path %>/assets/css/amazeui.min.css" />
@@ -141,68 +141,67 @@
                     <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
                         <div class="widget am-cf">
                             <div class="widget-head am-cf">
-                                <div class="widget-title am-fl">用户表单</div>
+                                <div class="widget-title am-fl">权限修改</div>
                             </div>
-                           <!--  用户表格 -->
+                           <!-- 权限表格 -->
                            
-                           <div class="container">
-                           
-                             <table class="table table-hover table-bordered">
-        <thead>
-        <tr class="success">
-            <th>账号</th>
-            <th>姓名</th>
-            <th>状态</th>
-            <th>操作</th>
-            <th>删除</th>
-            <th>离职</th>
-            <th>修改信息</th>
-            <th>重置密码</th>
-        </tr>
-        </thead>
-        <tbody>
-        
-      <c:forEach items="${tbStafflist}" var="staff"> 
-	        <tr>
-	            <!--  用户账号 -->
-	            <td> ${staff.getStaffAccount()}</td>
-	            
-	           <!--  用户姓名 -->
-	            <td>${staff.staffName } </td>
-	              
-	           <!-- 用户状态  -->
-	             <td> 
-	             <c:if test="${staff.staffState == 12 }">  
-	            	 启动 
-	             </c:if>
-	             <c:if test="${staff.staffState ==13 }"> 
-	            	 禁用 
-	          	</c:if>
-	          	<c:if test="${staff.staffState ==14 }"> 
-	            	 离职 
-	          	</c:if>
-	             </td>
-	             
-	             <!-- 用户状态修改 -->
-	             <td>
-	            	<c:if test="${staff.staffState ==13 }"> 
-	            	<a class="btn btn-success btn-xs" href="staffEnable.action?staffId=${staff.staffId }">启用</a>
-	             	</c:if>
-	             	<c:if test="${staff.staffState ==12 }"> 
-	            	<a class="btn btn-danger btn-xs" href="staffDisable.action?staffId=${staff.staffId }">禁用</a>
-	             	</c:if>
-				 </td> 
-				 
-				  <td><a class="btn btn-success btn-xs" href="staffdelete.action?staffId=${staff.staffId }">删除</a></td>
-				   <td><a class="btn btn-success btn-xs" href="staffQuit.action?staffId=${staff.staffId }">离职</a></td>
-				 <td><a class="btn btn-success btn-xs" href="userChangeManage.action?staffId=${staff.staffId }">修改信息</a></td> 
-				    <td><a class="btn btn-success btn-xs" href="userpwd.action?staffId=${staff.staffId }">密码重置</a></td>          
-	        </tr>
-        </c:forEach> 
-        </tbody>
-    </table>
-  
+
+    <div class="container">
+    <div class="alert alert-success col-sm-12">
+		<div class="row">
+		</div>
+    </div>
 </div>
+<div class="container">
+    <div class="alert alert-info col-sm-12">
+		<div class="row">
+			已有权限
+		<table>
+			<c:forEach items="${menuLst}" var="p">
+	   			<tr>
+					<td><span>${p.getMenuName()}</span></td>
+					<td><span>→</span></td>
+					<c:forEach items="${p.secondList2 }" var="s">
+						<td>${s.menuName }</td>
+						<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					</c:forEach>  
+				</tr>
+		   	</c:forEach>
+		</table>
+		
+		</div>
+    </div>
+</div> 
+ <div class="container">
+	<div class="alert alert-info col-sm-12">
+		<div class="row">
+			修改
+		</div>
+		<form action="userRoleMenuupdate.action" method="post">
+		<table>
+			<c:forEach items="${tbMenus}" var="p" >
+				<tr>
+					<td>${p.getMenuName()}：</td>
+					<c:forEach items="${p.secondList}" var="s">
+						<td><input type="checkbox" name="menuArr" value="${s.menuId }"/>${s.menuName }</td>
+					</c:forEach> 
+				</tr>
+			</c:forEach>
+			<tr>
+				<td><input type="submit" value="修改" /></td>
+				<td><input type="button" value="返回" onclick="history.go(-1)"/></td>
+			</tr>
+		</table>
+			<input type="hidden" value="${roleId}" name="roleId" /> 
+		</form>
+    </div>
+</div> 
+
+
+
+
+
+
                         </div>
                     </div>
                 </div>

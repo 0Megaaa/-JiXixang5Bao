@@ -98,7 +98,7 @@ context.fillStyle="#00CD00";
 context.fillRect(100*"${type.getParkX()}",50*"${type.getParkY()}",100,50);
 //没停车的把车位弄上去。
 context.fillStyle="#000000";
-console.log("${type.getPrefix()}");
+
 context.font="20px Times New Roman";
   context.fillText("${type.getPrefix()}${type.getParkNum()}", 100*"${type.getParkX()}"+8,50*"${type.getParkY()}"+30);
    

@@ -103,105 +103,27 @@
 
             <!-- 菜单 -->
             <ul class="sidebar-nav">
-               
-
-                <li class="sidebar-nav-heading">管理菜单<span class="sidebar-nav-heading-info"> </span></li>
-                  <li class="sidebar-nav-link">
-                    <a href="tables.html">
-                        <i class="am-icon-table sidebar-nav-link-logo"></i> 首页
-                    </a>
-                </li>
-                
-                <li class="sidebar-nav-link">
-                    <a href="Manager/userManage.action">
-                        <i class="am-icon-table sidebar-nav-link-logo"></i> 用户管理
-                    </a>
-                </li>
-                 <!--    权限配置 -->
-              <li class="sidebar-nav-link">
-                    <a href="calendar.html">
-                        <i class="am-icon-calendar sidebar-nav-link-logo"></i> 权限配置
-                    </a>
-                </li>
-                
-              <!--   日志查看 -->
-              
+            <li class="sidebar-nav-heading">管理菜单<span class="sidebar-nav-heading-info"> </span></li>
+               <c:forEach items="${tbMenus}"  var="type">
                <li class="sidebar-nav-link">
-                    <a href="calendar.html">
-                        <i class="am-icon-calendar sidebar-nav-link-logo"></i> 日志查看
-                    </a>
-                </li>
-                <!-- 参数配置 -->
-               <li class="sidebar-nav-link">
-                    <a href="tables.html">
-                        <i class="am-icon-table sidebar-nav-link-logo"></i> 参数配置
-                    </a>
-                </li>
-                
-                                   <!-- 菜单管理 -->
-                                   
-               
-                <li class="sidebar-nav-link">
                     <a href="javascript:;" class="sidebar-nav-sub-title">
-                        <i class="am-icon-table sidebar-nav-link-logo"></i> 菜单管理
+                        <i class="am-icon-table sidebar-nav-link-logo"></i> ${type.menuName}
                         <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
                     </a>
+                    <c:forEach items="${type.secondList}"  var="second">
                     <ul class="sidebar-nav sidebar-nav-sub">
                         <li class="sidebar-nav-link">
-                            <a href="Menu/userMenu.action">
-                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 查看菜单
-                            </a>
-                        </li>
-
-                        <li class="sidebar-nav-link">
-                            <a href="Menu/userMenuChange.action">
-                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 菜单修改
+                            <a href="${second.menuLink}">
+                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 
+                               ${second.menuName }
                             </a>
                         </li>
                     </ul>
+                    </c:forEach>
                 </li>
-                
-                <!-- 角色管理 -->
-                <li class="sidebar-nav-link">
-                    <a href="javascript:;" class="sidebar-nav-sub-title">
-                        <i class="am-icon-table sidebar-nav-link-logo"></i> 角色管理
-                        <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
-                    </a>
-                    <ul class="sidebar-nav sidebar-nav-sub">
-                        <li class="sidebar-nav-link">
-                            <a href="userRoleManage.action">
-                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 角色信息
-                            </a>
-                        </li>
-
-                        <li class="sidebar-nav-link">
-                            <a href="table-list-img.html">
-                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 角色操作
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                
-            
-                
-                <li class="sidebar-nav-link">
-                    <a href="register.jsp">
-                        <i class="am-icon-clone sidebar-nav-link-logo"></i> 注册
-<!--                         <span class="am-badge am-badge-secondary sidebar-nav-link-logo-ico am-round am-fr am-margin-right-sm">6</span>
- -->                    </a>
-                </li>
-                <li class="sidebar-nav-link">
-                    <a href="login.jsp">
-                        <i class="am-icon-key sidebar-nav-link-logo"></i> 登录
-                    </a>
-                </li>
-                <!-- <li class="sidebar-nav-link">
-                    <a href="404.html">
-                        <i class="am-icon-tv sidebar-nav-link-logo"></i> 404错误
-                    </a>
-                </li> -->
-
-            </ul>
+               <!--  <li class="sidebar-nav-heading"><span class="sidebar-nav-heading-info"> </span></li> -->
+               </c:forEach>
+               </ul>
         </div>
 
         <!-- 内容区域 -->

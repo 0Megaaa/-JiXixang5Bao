@@ -132,7 +132,11 @@ context.fillText("${type.getCarNum()}", 100*"${type.getParkX()}"+8,50*"${type.ge
 /* console.log("${type.getPrefix()}"); */
 context.fillStyle="#00CD00";
 context.fillRect(100*"${type.getParkX()}",50*"${type.getParkY()}",100,50);
+context.fillStyle="#000000";
 
+context.font="20px Times New Roman";
+  context.fillText("${type.getPrefix()}${type.getParkNum()}", 100*"${type.getParkX()}"+8,50*"${type.getParkY()}"+30);
+   
 
 </c:if>
 

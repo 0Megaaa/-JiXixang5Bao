@@ -31,4 +31,7 @@ public class CarLoginBiz {
 	public List<ViewVip> findVip(TbCar car){
 		return mapper.findVip(car);
 	}
+	public List<ViewCarPark> lookCar(TbCar car){
+		return mapper.lookCar(car);
+	}
 }

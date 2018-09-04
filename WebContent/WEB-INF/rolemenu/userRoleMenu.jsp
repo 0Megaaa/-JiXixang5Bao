@@ -9,14 +9,14 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>用户管理</title>
-    <meta name="description" content="这是一个 用户管理页面">
+    <title>权限配置</title>
+    <meta name="description" content="这是一个 权限配置页面">
     <meta name="keywords" content="index">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="renderer" content="webkit">
     <meta http-equiv="Cache-Control" content="no-siteapp" />
     <link rel="icon" type="image/png" href="<%=path %>/<%=path %>/assets/i/favicon.png">
-    <link rel="apple-touch-icon-precomposed" href="<%=path %>/<%=path %>/assets/i/app-icon72x72@2x.png">
+    <link rel="apple-touch-icon-precomposed" href="<%=path %>/assets/i/app-icon72x72@2x.png">
     <meta name="apple-mobile-web-app-title" content="Amaze UI" />
     <script src="<%=path %>/assets/js/echarts.min.js"></script>
     <link rel="stylesheet" href="<%=path %>/assets/css/amazeui.min.css" />
@@ -102,7 +102,7 @@
             </div>
 
             <!-- 菜单 -->
-            <ul class="sidebar-nav">
+             <ul class="sidebar-nav">
             <li class="sidebar-nav-heading">管理菜单<span class="sidebar-nav-heading-info"> </span></li>
                <c:forEach items="${tbMenus}"  var="type">
                <li class="sidebar-nav-link">
@@ -141,68 +141,41 @@
                     <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
                         <div class="widget am-cf">
                             <div class="widget-head am-cf">
-                                <div class="widget-title am-fl">用户表单</div>
+                                <div class="widget-title am-fl">权限配置</div>
                             </div>
-                           <!--  用户表格 -->
+                           <!-- 权限表格 -->
                            
-                           <div class="container">
-                           
-                             <table class="table table-hover table-bordered">
+
+    <table class="table table-hover table-bordered">
         <thead>
         <tr class="success">
-            <th>账号</th>
-            <th>姓名</th>
-            <th>状态</th>
+            <th>序号</th>
+            <th>角色名称</th>
             <th>操作</th>
-            <th>删除</th>
-            <th>离职</th>
-            <th>修改信息</th>
-            <th>重置密码</th>
         </tr>
         </thead>
         <tbody>
-        
-      <c:forEach items="${tbStafflist}" var="staff"> 
+        	<c:forEach items="${roles}" var="role" >
 	        <tr>
-	            <!--  用户账号 -->
-	            <td> ${staff.getStaffAccount()}</td>
-	            
-	           <!--  用户姓名 -->
-	            <td>${staff.staffName } </td>
-	              
-	           <!-- 用户状态  -->
-	             <td> 
-	             <c:if test="${staff.staffState == 12 }">  
-	            	 启动 
-	             </c:if>
-	             <c:if test="${staff.staffState ==13 }"> 
-	            	 禁用 
-	          	</c:if>
-	          	<c:if test="${staff.staffState ==14 }"> 
-	            	 离职 
-	          	</c:if>
-	             </td>
-	             
-	             <!-- 用户状态修改 -->
-	             <td>
-	            	<c:if test="${staff.staffState ==13 }"> 
-	            	<a class="btn btn-success btn-xs" href="staffEnable.action?staffId=${staff.staffId }">启用</a>
-	             	</c:if>
-	             	<c:if test="${staff.staffState ==12 }"> 
-	            	<a class="btn btn-danger btn-xs" href="staffDisable.action?staffId=${staff.staffId }">禁用</a>
-	             	</c:if>
-				 </td> 
-				 
-				  <td><a class="btn btn-success btn-xs" href="staffdelete.action?staffId=${staff.staffId }">删除</a></td>
-				   <td><a class="btn btn-success btn-xs" href="staffQuit.action?staffId=${staff.staffId }">离职</a></td>
-				 <td><a class="btn btn-success btn-xs" href="userChangeManage.action?staffId=${staff.staffId }">修改信息</a></td> 
-				    <td><a class="btn btn-success btn-xs" href="userpwd.action?staffId=${staff.staffId }">密码重置</a></td>          
+	        <c:if test="${role.getRoleId()!=1}">
+	         	<td>${role.getRoleId()}</td>
+	         	
+	      		<td>${role.getRoleName()}</td>
+	      		<td>
+	      			<a class="btn btn-info" href="userRoleMenuChange.action?roleId=${role.getRoleId()}"
+	      			 style="background-color: white;border: none;color: black;">修改</a>
+	      		</td>
+	      		</c:if>
 	        </tr>
-        </c:forEach> 
+    		</c:forEach>
         </tbody>
     </table>
-  
-</div>
+
+
+
+
+
+
                         </div>
                     </div>
                 </div>

@@ -1,18 +1,29 @@
 package com.soft.controller;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Path;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.FileUtils;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,6 +41,7 @@ import com.soft.bean.TbCar;
 import com.soft.bean.ViewCarPark;
 import com.soft.biz.CarLoginBiz;
 import com.soft.tools.OcrUtil;
+import com.squareup.okhttp.Request;
 
 
 @Controller 
@@ -45,6 +57,7 @@ public class CarLoginHandler {
 	@Resource
 	private OcrUtil ocr;
 	private String message;
+	private Map<String, Object> info=new HashMap<String, Object>();
 	//localhost:8080/park/carLogin/hello.action
 	@RequestMapping("/carLogin.action")
 	public ModelAndView carLogin(HttpServletRequest request){
@@ -52,33 +65,37 @@ public class CarLoginHandler {
 		String fileName = (String)request.getAttribute("file");
 		File file=new File(path+"//"+fileName);
 		
-		String carNum = ocr.getCarNum(path, fileName).substring(ocr.getCarNum(path, fileName).length()-12, ocr.getCarNum(path, fileName).length()-5);
-
-		System.out.println(carNum);
-		String time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-		car.setCarNum(carNum);
-		car.setStartTime(time);
-		car.setEnterImgSrc(file.getAbsolutePath());
-		
+		String sum = ocr.getCarNum(path, fileName);
+		String carNum = sum.substring(ocr.getCarNum(path, fileName).length()-12, ocr.getCarNum(path, fileName).length()-5);
+		System.out.println(sum);
+		System.out.println(sum.length());
 		//需要进行用户类型判断
-		if(carLoginBiz.findWhite(car).size()==0 && carLoginBiz.findVip(car).size()==0){
-			car.setUserType(2);
-			car.setPayState(7);
-		}else if(carLoginBiz.findWhite(car).size()!=0){
-			car.setUserType(4);
-			car.setPayState(7);
-		}else if(carLoginBiz.findVip(car).size()!=0){
-			car.setUserType(3);
-			car.setPayState(7);
+		if(sum.length()>=160 && sum.length()<=170){
+			String time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+			car.setCarNum(carNum);
+			car.setStartTime(time);
+			car.setEnterImgSrc(file.getAbsolutePath());
+			if(carLoginBiz.findWhite(car).size()==0 && carLoginBiz.findVip(car).size()==0){
+				car.setUserType(2);
+				car.setPayState(7);
+			}else if(carLoginBiz.findWhite(car).size()!=0){
+				car.setUserType(4);
+				car.setPayState(7);
+			}else if(carLoginBiz.findVip(car).size()!=0){
+				car.setUserType(3);
+				car.setPayState(7);
+			}
+			
+			carLoginBiz.addCar(car);
+			viewCarParkcar = carLoginBiz.findCar(car).get(0);
+			
+			request.setAttribute("car", viewCarParkcar);
+			request.setAttribute("flag", 1);
+		}else{
+			message = "该图片不是车牌!";
+			request.setAttribute("message", message);
 		}
 		
-		carLoginBiz.addCar(car);
-		viewCarParkcar = carLoginBiz.findCar(car).get(0);
-		
-		message = "车闸开启了!";
-		request.setAttribute("car", viewCarParkcar);
-		request.setAttribute("message", message);
-		request.setAttribute("flag", 1);
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("main/carLogin");
 		return mav;
@@ -90,6 +107,32 @@ public class CarLoginHandler {
 		mav.setViewName("main/carLogin");
 		return mav;
 	}
+	@RequestMapping("/toLookCar.action")
+	public ModelAndView toLookCar(){
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("main/lookCar");
+		return mav;
+	}
+	
+	@RequestMapping(value="/lookCar.action", method=RequestMethod.POST, produces="application/json;charset=utf-8")
+	public @ResponseBody Map<String, Object> userinfo3(HttpServletRequest request,String carNum){
+		car.setCarNum(carNum);
+		List<ViewCarPark> carList = carLoginBiz.lookCar(car);
+		
+		if(carList.size()!=0 && carList.get(0).getParkImgSrc()!=null){
+			info.put("success", true);
+			info.put("carimg", carList.get(0).getParkImgSrc());
+		}else{
+			info.put("success", false);
+			info.put("message", "该车暂未停入车库");
+		}
+		request.setAttribute("carNum", carNum);
+		request.setAttribute("map", info);
+		return info;
+	}
+	
+	
 	//localhost:8080/webproj12_springmvc/index.jsp
 //	@RequestMapping(value="/userinfo.action")
 //	public ModelAndView userinfo(HttpServletRequest request, 

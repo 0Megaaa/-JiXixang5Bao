@@ -4,12 +4,11 @@
 	
 <mapper namespace="com.soft.mapper.StaffMapper">
 	
-	<select id="login" parameterType="com.soft.bean.TbStaff" 
+	<!-- <select id="login" parameterType="com.soft.bean.TbStaff" 
 	resultType="com.soft.bean.TbStaff">
 		select * from tbstaff where staffaccount = #{staffAccount} and staffpwd = #{staffPwd}
-	</select>
-
- 
+	</select> -->
+	
 	<select id="findAll" 
 	resultType="com.soft.bean.TbStaff">
 	select * from tbstaff
@@ -37,20 +36,8 @@
 	</update>
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+ 
 	
 	
 </mapper>

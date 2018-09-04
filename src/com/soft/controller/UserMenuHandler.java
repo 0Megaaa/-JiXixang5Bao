@@ -11,6 +11,7 @@ import org.springframework.web.portlet.ModelAndView;
 
 import com.soft.bean.TbMenu;
 import com.soft.biz.MenuBiz;
+import com.soft.biz.RoleMenuBiz;
 
 import oracle.net.aso.p;
 
@@ -19,14 +20,27 @@ import oracle.net.aso.p;
 public class UserMenuHandler {
 	
 	@Resource
+	
 	private MenuBiz menuBizImpl;
+	@Resource
+	private RoleMenuBiz roleMenuBizImpl;
 	List<TbMenu>tbMenuslist=null;
+	List<TbMenu>tbMenus=null;
 	@RequestMapping("/userMenu.action")
 	public ModelAndView findAll(HttpServletRequest request){
 		//MAP存 数据库查所有的一级菜单 循环存一级菜单名字 作为hashmap的值  
+		TbMenu tbMenu=new TbMenu();
+		tbMenus=roleMenuBizImpl.findmenu(tbMenu);
+		for (int i = 0; i < tbMenus.size(); i++) {
+			TbMenu tbMenu2=tbMenus.get(i);
+			//这边取到一级菜单的ID 接下去去数据库查父ID是这个ID的菜单 此时返回的数据是一个list
+			tbMenu2.setSecondList(roleMenuBizImpl.findseconid(""+tbMenu2.getMenuId()));
+		}
+		
 		tbMenuslist=menuBizImpl.findMenu();
 		if (tbMenuslist!=null) {
 			request.setAttribute("tbMenuslist", tbMenuslist);
+			request.setAttribute("tbMenus", tbMenus);
 			ModelAndView modelAndView=new ModelAndView();
 			modelAndView.setViewName("Menu/userMenu");
 			return modelAndView;
@@ -38,8 +52,16 @@ public class UserMenuHandler {
 	
 	@RequestMapping("/userMenuChange.action")
 	public ModelAndView userMenuChange(HttpServletRequest request){
+		TbMenu tbMenu=new TbMenu();
+		tbMenus=roleMenuBizImpl.findmenu(tbMenu);
+		for (int i = 0; i < tbMenus.size(); i++) {
+			TbMenu tbMenu2=tbMenus.get(i);
+			//这边取到一级菜单的ID 接下去去数据库查父ID是这个ID的菜单 此时返回的数据是一个list
+			tbMenu2.setSecondList(roleMenuBizImpl.findseconid(""+tbMenu2.getMenuId()));
+		}
 		tbMenuslist=menuBizImpl.findMenu();
 		if (tbMenuslist!=null) {
+			request.setAttribute("tbMenus", tbMenus);
 			request.setAttribute("tbMenuslist", tbMenuslist);
 			ModelAndView modelAndView=new ModelAndView();
 			modelAndView.setViewName("Menu/userMenuChange");

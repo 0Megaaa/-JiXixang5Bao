@@ -17,4 +17,5 @@ public interface CarLoginMapper {
 	public List<ViewCarPark> findCar(TbCar car);
 	public List<ViewWhiteList> findWhite(TbCar car);
 	public List<ViewVip> findVip(TbCar car);
+	public List<ViewCarPark> lookCar(TbCar car);
 }

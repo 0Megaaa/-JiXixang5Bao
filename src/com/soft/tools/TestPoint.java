@@ -134,7 +134,7 @@ public class TestPoint {
 						System.out.print("@");
 				String x=		p.getKey().split("_")[0];
 				String y=		p.getKey().split("_")[1];
-list.add(p);
+                    list.add(p);
 					} else if (barrier.contains(p)) {
 						System.out.print("#");
 					} else {

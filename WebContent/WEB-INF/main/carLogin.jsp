@@ -42,19 +42,19 @@
 <script type="text/javascript">
 	
 	var message = "${message == null ? "" : message}";
-	if(message != "")
+	if(message == "")
 	{
-		
 		var i = setTimeout('check()',2000);
-
+		
 		function check() {
-			
 			 if( $('#up')[0].src == 'http://localhost:8080/park/assets/img/up.jpg') {
 				 $('#up').attr('src','${pageContext.request.contextPath}/assets/img/down.jpg');
 				
 			}
 		 }
 		/* window.clearTimeout(i); */
+	}else{
+		alert(message);
 	}
 	
 	

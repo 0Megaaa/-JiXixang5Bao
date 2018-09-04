@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
+	"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+	<mapper namespace="com.soft.mapper.RoleMenuMapper">
+	
+
+<select id="findrole" resultType="com.soft.bean.TbRole" parameterType="com.soft.bean.TbRole">
+		select * from tbrole
+	</select>
+	<select id="findallview" resultType="com.soft.bean.ViewRoleMenu" parameterType="com.soft.bean.ViewRoleMenu">
+		select * from VIEWROLEMENU where roleid=#{roleId}
+	</select>
+	
+    <select id="findmenu" parameterType="com.soft.bean.TbMenu" resultType="com.soft.bean.TbMenu">
+    select * from tbmenu where menupid=0
+    </select>
+    
+    <select id="findseconid" parameterType="String" resultType="com.soft.bean.TbMenu">
+     select * from tbmenu where menupid=#{menuPid}
+    </select>
+    
+    <select id="findchange" parameterType="String" resultType="com.soft.bean.TbMenu">
+    select * from tbrolemenu rm,tbmenu m where rm.menuid = m.menuid and m.menupid = 0 and roleid =#{roleId}
+    </select>
+    
+	<select id="findSecond" parameterType="String" resultType="com.soft.bean.ViewRoleMenu">
+     select * from tbmenu where menupid=#{0} and roleid =#{1}
+    </select>
+	
+	 <!-- public List<ViewRoleMenu> findFirstMenu(String roleId);
+	 public List<ViewRoleMenu> findSecondMenu(String roleId,String menuPid);  -->
+	
+	<select id="findFirstMenu" parameterType="String" resultType="com.soft.bean.ViewRoleMenu">
+		select * from viewrolemenu where roleid = #{roleId} and menupid = 0
+	</select>
+	
+	<select id="findSecondMenu" parameterType="String" resultType="com.soft.bean.ViewRoleMenu">
+		select * from viewrolemenu where roleid = #{0} and menupid = #{1}
+	</select>
+	
+	<delete id="deleall" parameterType="long">
+	DELETE FROM tbrolemenu WHERE roleid = #{roleId}
+	</delete>
+	
+	<insert id="newMenu" parameterType="String">
+	INSERT INTO tbrolemenu (rolemenuid,roleid,menuid ) VALUES (rolemenu.nextval,#{0},#{1})
+	</insert>
+	
+	
+	<select id="newMenu2" parameterType="String" resultType="com.soft.bean.TbMenu">
+	select m1.menuid,m1.menuname from tbmenu m1, tbmenu m2 where m1.menuid = m2.menupid 
+	and m2.menuid in
+	<foreach collection="array" index="index" item="mid" separator="," open="(" close=")">
+    	'${mid}'
+	</foreach>
+	group by m1.menuid,m1.menuname
+	</select>
+	 
+	
+	<insert id="addFisrtMenu" parameterType="String">
+	INSERT INTO tbrolemenu (rolemenuid,roleid,menuid ) VALUES (rolemenu.nextval,#{0},#{1})
+	</insert>
+	
+	
+	
+</mapper>

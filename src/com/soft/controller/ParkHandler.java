@@ -159,7 +159,9 @@ for(int i=0;i<list.size();i++){
 				}
 	
 				//将src插入数据库中。
-				tbCar2.setParkImgSrc(destFile1.getAbsolutePath());
+				String pathco=request.getContextPath()+"/upload/"+time+"/"+filename;
+				System.out.println(pathco+"pathco");
+				tbCar2.setParkImgSrc(pathco);
 	
 				CarParkBizImpl.updateCarParkSrc	(tbCar2);
 			

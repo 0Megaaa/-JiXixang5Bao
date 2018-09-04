@@ -20,4 +20,7 @@
 	<select id="findVip"  parameterType="com.soft.bean.TbCar" resultType="com.soft.bean.ViewCarPark">
 		select * from tbvip where carnum=#{carNum}
 	</select>
+	<select id="lookCar"  parameterType="com.soft.bean.TbCar" resultType="com.soft.bean.ViewCarPark">
+		select * from tbcar where carnum=#{carNum} order by starttime desc
+	</select>
 </mapper>

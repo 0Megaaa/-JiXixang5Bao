@@ -8,18 +8,42 @@ public class TbMenu {
 	private long menuPid;
 	private String menuName;
 	private String menuLink;
-	private List<TbMenu>list;
 	
-	
-	
-	
-	public List<TbMenu> getList() {
-		return list;
+	private List<TbMenu>secondList;
+	private List<ViewRoleMenu>secondList2;
+
+
+	public List<ViewRoleMenu> getSecondList2() {
+		return secondList2;
 	}
 
-	public void setList(List<TbMenu> list) {
-		this.list = list;
+
+
+	public List<TbMenu> getSecondList() {
+		return secondList;
 	}
+
+
+
+	public void setSecondList(List<TbMenu> secondList) {
+		this.secondList = secondList;
+	}
+
+
+
+	public void setSecondList2(List<ViewRoleMenu> secondList2) {
+		this.secondList2 = secondList2;
+	}
+
+
+
+	
+
+
+
+	
+
+
 
 	public long getMenuId() {
 		return menuId;
@@ -67,14 +91,24 @@ public class TbMenu {
 		this.menuLink = menuLink;
 	}
 
-	public TbMenu(long menuId, long menuPid, String menuName, String menuLink, List<TbMenu> list) {
+	
+
+
+
+
+
+	public TbMenu(long menuId, long menuPid, String menuName, String menuLink, List<TbMenu> secondList,
+			List<ViewRoleMenu> secondList2) {
 		super();
 		this.menuId = menuId;
 		this.menuPid = menuPid;
 		this.menuName = menuName;
 		this.menuLink = menuLink;
-		this.list = list;
+		this.secondList = secondList;
+		this.secondList2 = secondList2;
 	}
+
+
 
 	public TbMenu() {
 		super();

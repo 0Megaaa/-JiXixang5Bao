@@ -12,7 +12,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.soft.bean.TbMenu;
 import com.soft.bean.TbStaff;
+import com.soft.biz.RoleMenuBiz;
 import com.soft.biz.StaffBiz;
 
 @Controller
@@ -21,12 +23,23 @@ public class UserManageHandler {
 
 	@Resource
 	private StaffBiz staffBizImpl;
+	@Resource
+	private RoleMenuBiz roleMenuBizImpl;
 	List<TbStaff>tbStafflist =null;
+	List<TbMenu>tbMenus=null;
 	@RequestMapping("/userManage.action")
 	public ModelAndView findAll(HttpServletRequest request){
+		TbMenu tbMenu=new TbMenu();
+		tbMenus=roleMenuBizImpl.findmenu(tbMenu);
+		for (int i = 0; i < tbMenus.size(); i++) {
+			TbMenu tbMenu2=tbMenus.get(i);
+			//这边取到一级菜单的ID 接下去去数据库查父ID是这个ID的菜单 此时返回的数据是一个list
+			tbMenu2.setSecondList(roleMenuBizImpl.findseconid(""+tbMenu2.getMenuId()));
+		}
 		tbStafflist =staffBizImpl.findAll();
 //        System.out.println(tbStafflist.get(0).getStaffState());
         if (tbStafflist!=null) {
+        	request.setAttribute("tbMenus", tbMenus);
         	request.setAttribute("tbStafflist", tbStafflist);
         /*	for (TbStaff tbStaff : tbStafflist) {
         		TbStaff s = tbStafflist.get(0);
