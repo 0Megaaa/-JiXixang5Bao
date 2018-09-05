@@ -16,4 +16,13 @@ RuleMiniMapper ruleMiniMapper;
 		return 	ruleMiniMapper.queryRule();
 	}
 
+	
+
+	
+	
+	
+	
+	
+	
+	
 }

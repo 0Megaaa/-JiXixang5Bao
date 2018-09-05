@@ -37,5 +37,20 @@
 		      <value>5242880</value> 
 		  </property>
 		</bean>
+		
+		
+		
+		<!-- 拦截器链配置  -->
+		<mvc:interceptors>
+			<mvc:interceptor>
+				<mvc:mapping path="/**"/>
+				 <mvc:exclude-mapping path="/**/staffLogin.action"/> 
+				  
+				 <!-- <mvc:exclude-mapping path="/**/captcha.action"/>  -->
+				 
+				 
+				<bean class="com.soft.controller.InterceptorHandler"></bean>		
+			</mvc:interceptor>
+		</mvc:interceptors>
 
 </beans>		

@@ -67,8 +67,7 @@ public class CarLoginHandler {
 		
 		String sum = ocr.getCarNum(path, fileName);
 		String carNum = sum.substring(ocr.getCarNum(path, fileName).length()-12, ocr.getCarNum(path, fileName).length()-5);
-		System.out.println(sum);
-		System.out.println(sum.length());
+	
 		//需要进行用户类型判断
 		if(sum.length()>=160 && sum.length()<=170){
 			String time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());

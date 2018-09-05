@@ -22,6 +22,7 @@ import com.soft.bean.TbParkPlace;
 import com.soft.bean.ViewCarPark;
 import com.soft.biz.CarParkBiz;
 import com.soft.biz.CarParkBizImpl;
+import com.soft.tools.OcrUtil;
 
 @Controller
 @RequestMapping("/user")
@@ -36,7 +37,8 @@ public class ParkHandler {
 	@Resource
 	private TbParkPlace tbParkPlace;
 	// 拉取停车场的车位及车记录。
-
+@Resource
+OcrUtil ocrUtil;
 	@RequestMapping("/carpark.action")
 	public ModelAndView carpark(HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView();
@@ -126,11 +128,7 @@ for(int i=0;i<list.size();i++){
 
 		if (tbParkPlace2 == null) {
 			// 查出车位为空，可插入数据。
-			// 1、车位将carid插入
-
-			tbParkPlace.setParkId(parkId);
-			CarParkBizImpl.updateParkPlace(tbParkPlace);
-
+	
 			// 2、上传图片，
 		
 			
@@ -138,6 +136,7 @@ for(int i=0;i<list.size();i++){
 //设置时间
 		/*	Date day = new Date();
 			String str = (new SimpleDateFormat("yyyyMMddHHmmssSSS")).format(day);*/
+	
 			//上传图片
 			String filename = fileact.getOriginalFilename();
 			String time = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
@@ -147,8 +146,8 @@ for(int i=0;i<list.size();i++){
 				destFile.mkdirs();
 			}
 			File destFile1 = new File(path, filename);
-			
-				try {
+		
+			try {
 					fileact.transferTo(destFile1);
 				} catch (IllegalStateException e) {
 					// TODO Auto-generated catch block
@@ -157,25 +156,43 @@ for(int i=0;i<list.size();i++){
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-	
+			ocrUtil. getCarNum(path, filename);
+			String carNumTest =ocrUtil. getCarNum(path, filename).substring(ocrUtil. getCarNum(path, filename).length()-12, ocrUtil. getCarNum(path, filename).length()-5);
+				
+			if(carNumTest.equals(carNum)){
+				
+				// 1、车位将carid插入
+				
+				tbParkPlace.setParkId(parkId);
+				CarParkBizImpl.updateParkPlace(tbParkPlace);
 				//将src插入数据库中。
 				String pathco=request.getContextPath()+"/upload/"+time+"/"+filename;
-				System.out.println(pathco+"pathco");
-				tbCar2.setParkImgSrc(pathco);
-	
-				CarParkBizImpl.updateCarParkSrc	(tbCar2);
-			
-//下发数据。
-			list = CarParkBizImpl.fingAllCarPark();
+				tbCar2.setParkImgSrc(pathco);	
+				CarParkBizImpl.updateCarParkSrc	(tbCar2);		
+				//下发数据。
+				list = CarParkBizImpl.fingAllCarPark();
 
-			request.setAttribute("list", list);
-			modelAndView.setViewName("user/userIndex");
+				request.setAttribute("list", list);
+				modelAndView.setViewName("user/userIndex");
+
+			}else {
+				// 上传与输入不匹配
+				destFile1.delete();
+         viewCarPark.setParkId(parkId);		
+				ViewCarPark viewCarPark1 = CarParkBizImpl.findCarParkMsg1(viewCarPark);
+		
+				modelAndView.setViewName("user/addPlace");
+				request.setAttribute("msg", "上传图片不正确");
+				request.setAttribute("viewCarPark", viewCarPark1);
+			}
+	
+
 
 		} else {
 			// 查出车位不为空，可插入数据。即该车已在车位上了。
 			viewCarPark.setParkId(parkId);		
 			ViewCarPark viewCarPark1 = CarParkBizImpl.findCarParkMsg1(viewCarPark);
-			System.out.println(viewCarPark1.getParkX()+" fdgd ");
+			
 			modelAndView.setViewName("user/addPlace");
 			request.setAttribute("msg", "该车已在停车位上了，请重新输入车牌！");
 			request.setAttribute("viewCarPark", viewCarPark1);

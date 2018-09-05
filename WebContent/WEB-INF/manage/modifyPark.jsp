@@ -19,261 +19,29 @@
     <link rel="apple-touch-icon-precomposed" href="<%=path %>/assets/i/app-icon72x72@2x.png">
     <meta name="apple-mobile-web-app-title" content="Amaze UI" />
     <script src="<%=path %>/assets/js/echarts.min.js"></script>
+    <script src="<%=path %>/js/echarts.min.js"></script>
+     <script src="<%=path %>/js/boostrap.min.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/assets/css/bootstrap.min.css" />
     <link rel="stylesheet" href="<%=path %>/assets/css/amazeui.min.css" />
     <link rel="stylesheet" href="<%=path %>/assets/css/amazeui.datatables.min.css" />
     <link rel="stylesheet" href="<%=path %>/assets/css/app.css">
     <script src="<%=path %>/assets/js/jquery.min.js"></script>
-
+   
+	<link rel="stylesheet" type="text/css" href="<%=path %>/css/spop.min.css">
+ 	<style type="text/css">
+    	.myselect{
+    		width: 150px;
+    		height: 40px;
+    		border-radius: 10px;
+    		background-color: red;
+    		font: 30px;
+    	}
+    </style>
 </head>
 
 <body data-type="widgets">
-    <script src="<%=path %>/assets/js/theme.js"></script>
-    <div class="am-g tpl-g">
-        <!-- 头部 -->
-        <header>
-            <!-- logo -->
-            <div class="am-fl tpl-header-logo">
-                <a href="javascript:;"><img src="<%=path %>/assets/img/logo.png" alt=""></a>
-            </div>
-            <!-- 右侧内容 -->
-            <div class="tpl-header-fluid">
-                <!-- 侧边切换 -->
-                <div class="am-fl tpl-header-switch-button am-icon-list">
-                    <span>
-
-                </span>
-                </div>
-                <!-- 搜索 -->
-                <div class="am-fl tpl-header-search">
-                    <form class="tpl-header-search-form" action="javascript:;">
-                        <button class="tpl-header-search-btn am-icon-search"></button>
-                        <input class="tpl-header-search-box" type="text" placeholder="搜索内容...">
-                    </form>
-                </div>
-                <!-- 其它功能-->
-                <div class="am-fr tpl-header-navbar">
-                    <ul>
-                        <!-- 欢迎语 -->
-                        <li class="am-text-sm tpl-header-navbar-welcome">
-                            <a href="javascript:;">欢迎你, <span>Amaze UI</span> </a>
-                        </li>
-
-                        <!-- 新邮件 -->
-                        <li class="am-dropdown tpl-dropdown" data-am-dropdown>
-                            <a href="javascript:;" class="am-dropdown-toggle tpl-dropdown-toggle" data-am-dropdown-toggle>
-                                <i class="am-icon-envelope"></i>
-                                <span class="am-badge am-badge-success am-round item-feed-badge">4</span>
-                            </a>
-                            <!-- 弹出列表 -->
-                            <ul class="am-dropdown-content tpl-dropdown-content">
-                                <li class="tpl-dropdown-menu-messages">
-                                    <a href="javascript:;" class="tpl-dropdown-menu-messages-item am-cf">
-                                        <div class="menu-messages-ico">
-                                            <img src="<%=path %>/assets/img/user04.png" alt="">
-                                        </div>
-                                        <div class="menu-messages-time">
-                                            3小时前
-                                        </div>
-                                        <div class="menu-messages-content">
-                                            <div class="menu-messages-content-title">
-                                                <i class="am-icon-circle-o am-text-success"></i>
-                                                <span>夕风色</span>
-                                            </div>
-                                            <div class="am-text-truncate"> Amaze UI 的诞生，依托于 GitHub 及其他技术社区上一些优秀的资源；Amaze UI 的成长，则离不开用户的支持。 </div>
-                                            <div class="menu-messages-content-time">2016-09-21 下午 16:40</div>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="tpl-dropdown-menu-messages">
-                                    <a href="javascript:;" class="tpl-dropdown-menu-messages-item am-cf">
-                                        <div class="menu-messages-ico">
-                                            <img src="<%=path %>/assets/img/user02.png" alt="">
-                                        </div>
-                                        <div class="menu-messages-time">
-                                            5天前
-                                        </div>
-                                        <div class="menu-messages-content">
-                                            <div class="menu-messages-content-title">
-                                                <i class="am-icon-circle-o am-text-warning"></i>
-                                                <span>禁言小张</span>
-                                            </div>
-                                            <div class="am-text-truncate"> 为了能最准确的传达所描述的问题， 建议你在反馈时附上演示，方便我们理解。 </div>
-                                            <div class="menu-messages-content-time">2016-09-16 上午 09:23</div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="tpl-dropdown-menu-messages">
-                                    <a href="javascript:;" class="tpl-dropdown-menu-messages-item am-cf">
-                                        <i class="am-icon-circle-o"></i> 进入列表…
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <!-- 新提示 -->
-                        <li class="am-dropdown" data-am-dropdown>
-                            <a href="javascript:;" class="am-dropdown-toggle" data-am-dropdown-toggle>
-                                <i class="am-icon-bell"></i>
-                                <span class="am-badge am-badge-warning am-round item-feed-badge">5</span>
-                            </a>
-
-                            <!-- 弹出列表 -->
-                            <ul class="am-dropdown-content tpl-dropdown-content">
-                                <li class="tpl-dropdown-menu-notifications">
-                                    <a href="javascript:;" class="tpl-dropdown-menu-notifications-item am-cf">
-                                        <div class="tpl-dropdown-menu-notifications-title">
-                                            <i class="am-icon-line-chart"></i>
-                                            <span> 有6笔新的销售订单</span>
-                                        </div>
-                                        <div class="tpl-dropdown-menu-notifications-time">
-                                            12分钟前
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="tpl-dropdown-menu-notifications">
-                                    <a href="javascript:;" class="tpl-dropdown-menu-notifications-item am-cf">
-                                        <div class="tpl-dropdown-menu-notifications-title">
-                                            <i class="am-icon-star"></i>
-                                            <span> 有3个来自人事部的消息</span>
-                                        </div>
-                                        <div class="tpl-dropdown-menu-notifications-time">
-                                            30分钟前
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="tpl-dropdown-menu-notifications">
-                                    <a href="javascript:;" class="tpl-dropdown-menu-notifications-item am-cf">
-                                        <div class="tpl-dropdown-menu-notifications-title">
-                                            <i class="am-icon-folder-o"></i>
-                                            <span> 上午开会记录存档</span>
-                                        </div>
-                                        <div class="tpl-dropdown-menu-notifications-time">
-                                            1天前
-                                        </div>
-                                    </a>
-                                </li>
-
-
-                                <li class="tpl-dropdown-menu-notifications">
-                                    <a href="javascript:;" class="tpl-dropdown-menu-notifications-item am-cf">
-                                        <i class="am-icon-bell"></i> 进入列表…
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <!-- 退出 -->
-                        <li class="am-text-sm">
-                            <a href="javascript:;">
-                                <span class="am-icon-sign-out"></span> 退出
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-        </header>
-        <!-- 风格切换 -->
-        <div class="tpl-skiner">
-            <div class="tpl-skiner-toggle am-icon-cog">
-            </div>
-            <div class="tpl-skiner-content">
-                <div class="tpl-skiner-content-title">
-                    选择主题
-                </div>
-                <div class="tpl-skiner-content-bar">
-                    <span class="skiner-color skiner-white" data-color="theme-white"></span>
-                    <span class="skiner-color skiner-black" data-color="theme-black"></span>
-                </div>
-            </div>
-        </div>
-        <!-- 侧边导航栏 -->
-        <div class="left-sidebar">
-            <!-- 用户信息 -->
-            <div class="tpl-sidebar-user-panel">
-                <div class="tpl-user-panel-slide-toggleable">
-                    <div class="tpl-user-panel-profile-picture">
-                        <img src="<%=path %>/assets/img/user04.png" alt="">
-                    </div>
-                    <span class="user-panel-logged-in-text">
-              <i class="am-icon-circle-o am-text-success tpl-user-panel-status-icon"></i>
-              禁言小张
-          </span>
-                    <a href="javascript:;" class="tpl-user-panel-action-link"> <span class="am-icon-pencil"></span> 账号设置</a>
-                </div>
-            </div>
-
-            <!-- 菜单 -->
-            <ul class="sidebar-nav">
-                <li class="sidebar-nav-heading">Components <span class="sidebar-nav-heading-info"> 附加组件</span></li>
-                <li class="sidebar-nav-link">
-                    <a href="index.html">
-                        <i class="am-icon-home sidebar-nav-link-logo"></i> 首页
-                    </a>
-                </li>
-                <li class="sidebar-nav-link">
-                    <a href="tables.html">
-                        <i class="am-icon-table sidebar-nav-link-logo"></i> 表格
-                    </a>
-                </li>
-                <li class="sidebar-nav-link">
-                    <a href="calendar.html">
-                        <i class="am-icon-calendar sidebar-nav-link-logo"></i> 日历
-                    </a>
-                </li>
-                <li class="sidebar-nav-link">
-                    <a href="form.html" class="active">
-                        <i class="am-icon-wpforms sidebar-nav-link-logo"></i> 表单
-
-                    </a>
-                </li>
-                <li class="sidebar-nav-link">
-                    <a href="chart.html">
-                        <i class="am-icon-bar-chart sidebar-nav-link-logo"></i> 图表
-
-                    </a>
-                </li>
-
-                <li class="sidebar-nav-heading">Page<span class="sidebar-nav-heading-info"> 常用页面</span></li>
-                <li class="sidebar-nav-link">
-                    <a href="javascript:;" class="sidebar-nav-sub-title">
-                        <i class="am-icon-table sidebar-nav-link-logo"></i> 数据列表
-                        <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
-                    </a>
-                    <ul class="sidebar-nav sidebar-nav-sub">
-                        <li class="sidebar-nav-link">
-                            <a href="table-list.html">
-                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 文字列表
-                            </a>
-                        </li>
-
-                        <li class="sidebar-nav-link">
-                            <a href="table-list-img.html">
-                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 图文列表
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="sidebar-nav-link">
-                    <a href="sign-up.html">
-                        <i class="am-icon-clone sidebar-nav-link-logo"></i> 注册
-                        <span class="am-badge am-badge-secondary sidebar-nav-link-logo-ico am-round am-fr am-margin-right-sm">6</span>
-                    </a>
-                </li>
-                <li class="sidebar-nav-link">
-                    <a href="login.html">
-                        <i class="am-icon-key sidebar-nav-link-logo"></i> 登录
-                    </a>
-                </li>
-                <li class="sidebar-nav-link">
-                    <a href="404.html">
-                        <i class="am-icon-tv sidebar-nav-link-logo"></i> 404错误
-                    </a>
-                </li>
-
-            </ul>
-        </div>
+    <!-- 菜单 -->
+			<c:import url="menu.jsp"></c:import>
 
         <!-- 内容区域 -->
         <div class="tpl-content-wrapper">
@@ -288,7 +56,7 @@
                     <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
                         <div class="widget am-cf">
                             <div class="widget-head am-cf">
-                                <div class="widget-title am-fl">总车位:${parkNum}</div>
+                               <div class="widget-title am-fl">总车位：</div> <div id="parkAllNum" class="widget-title am-fl">${parkNum}</div>
                                 <div class="widget-function am-fr">
                                     <a href="javascript:;" class="am-icon-cog"></a>
                                 </div>
@@ -296,19 +64,31 @@
                             <div class="widget-body am-fr">
 
 
-                              <form class="am-form tpl-form-line-form" action="modify.action"  id="form" name="form" method="post">
+                              <form onsubmit = "return isprifix1Num()&&isprifix2Num()&&isprifix3Num()&&isprifix4Num()&&isunPrifixNum()" class="am-form tpl-form-line-form" action="modify.action"  id="form" name="form" method="post">
                                     
                             <div class="am-form-group">
                              <label for="user-phone" class="am-u-sm-3 am-form-label">车编号<span class="tpl-form-line-small-title"></span></label>
                              <div class="am-u-sm-9">
-                             <select data-am-selected="{searchBox: 1}" style="display: none;" name="prifix1">
-                             <option value="A">A</option>
-                             </select>
+                             
+                           
+                             <div class="form-group">
+                             	<select class="myselect">
+                             		<option>1</option>
+                             	</select>
+                             </div>
+                             
+                             
+                             <select  name="machine" id="prifix1"   class = "form-group">
+				            
+				             	<option value="A">A</option>
+				              
+				              </select>
+                             
                              </div>
                                         
                              <div class="am-u-sm-9">
-                             <input type="text" name="prifix1Num" class="tpl-form-input" id="user-name"   >
-                             <small>请输入该车位编号数量如：10</small>
+                             <input type="text" name="prifix1Num" id = "prifix1Num"class="tpl-form-input"    onblur="isprifix1Num()" >
+                             <small id="prifix1Numname"></small>
                              </div>
                              </div>
                              
@@ -316,14 +96,14 @@
                              <div class="am-form-group">
                              <label for="user-phone" class="am-u-sm-3 am-form-label">车编号<span class="tpl-form-line-small-title"></span></label>
                              <div class="am-u-sm-9">
-                             <select data-am-selected="{searchBox: 1}" style="display: none;" name="prifix2">
+                             <select   style="width:10px;"  name="prifix2">
                              <option value="B">B</option>
                              </select>
                              </div>
                                         
                              <div class="am-u-sm-9">
-                             <input type="text"  class="tpl-form-input" id="user-name"   name="prifix2Num">
-                             <small>同上</small>
+                             <input type="text"  class="tpl-form-input" id="prifix2Num"   name="prifix2Num" onblur="isprifix2Num()">
+                            <small id="prifix2Numname"></small>
                              </div>
                              </div>
                              
@@ -337,8 +117,8 @@
                              </div>
                                         
                              <div class="am-u-sm-9">
-                             <input type="text"  class="tpl-form-input" id="user-name"   name="prifix3Num" >
-                             <small>同上</small>
+                             <input type="text"  class="tpl-form-input" id="prifix3Num"   name="prifix3Num" onblur="isprifix3Num()">
+                             <small id="prifix3Numname"></small>
                              </div>
                              </div>
                              
@@ -351,8 +131,8 @@
                              </div>
                                         
                              <div class="am-u-sm-9">
-                             <input type="text"  class="tpl-form-input" id="user-name"   name="prifix4Num"  >
-                             <small>同上</small>
+                             <input type="text"  class="tpl-form-input" id="prifix4Num"   name="prifix4Num" onblur="isprifix4Num()" >
+                             <small id="prifix4Numname"></small>
                              </div>
                              </div>
                              
@@ -361,8 +141,8 @@
                               
                                         
                              <div class="am-u-sm-9">
-                             <input type="text"  class="tpl-form-input" id="user-name"   name="unPrifixNum"  >
-                             <small>同上</small>
+                             <input type="text"  class="tpl-form-input" id="unPrifixNum"   name="unPrifixNum" onblur="isunPrifixNum()" >
+                             <small id="unPrifixNumname"></small>
                              </div>
                              </div>
                              
@@ -375,6 +155,7 @@
                                     <div class="am-form-group">
                                         <div class="am-u-sm-9 am-u-sm-push-3">
                                             <button type="button"  class = "am-btn am-btn-primary tpl-btn-bg-color-success " onclick="modifyDo();">提交</button>
+                                       <small id="buttonname"></small>
                                         </div>
                               
                               
@@ -388,19 +169,203 @@
             </div>
         </div>
     </div>
-    </div>
+     
     <script src="<%=path %>/assets/js/amazeui.min.js"></script>
     <script src="<%=path %>/assets/js/amazeui.datatables.min.js"></script>
     <script src="<%=path %>/assets/js/dataTables.responsive.min.js"></script>
     <script src="<%=path %>/assets/js/app.js"></script>
 <script src="${pageContext.request.contextPath }/js/jquery.min.js"></script>
+	<script src="${pageContext.request.contextPath }/js/spop.min.js"></script>
 <script type="text/javascript">
 	function modifyDo(){
-		$("form").submit();
+		
+		var prifix1Num=window.document.getElementById("prifix1Num").value;
+		var prifix2Num=window.document.getElementById("prifix2Num").value;
+		var prifix3Num=window.document.getElementById("prifix3Num").value;
+		var prifix4Num=window.document.getElementById("prifix4Num").value;
+		var unPrifixNum=window.document.getElementById("unPrifixNum").value;
+		var parkAllNum=${parkNum};
+		var buttonname=window.document.getElementById("buttonname");
+		
+		if(parseInt(prifix1Num)+parseInt(prifix2Num)+parseInt(prifix3Num)+parseInt(prifix4Num)+parseInt(unPrifixNum)>parseInt(parkAllNum)){ 
+			buttonname.innerHTML="超过总车位数量！"
+			return false; 
+		}else{
+			$("form").submit();
+		}
+		
 	}
 
  
 </script>
+<script type="text/javascript">
+$(function() {
+	if ("${parkmsg}") {
+		spop({
+			template : "${parkmsg}",
+			autoclose : 1500
+		});
+		
+	}
+	 
+	
+	
+});
+ 
+</script>
+
+
+<!-- 表单验证 -->
+<script language="javascript"> 
+function isprifix1Num(){ 
+	
+var prifix1Num=window.document.getElementById("prifix1Num").value;
+
+var parkAllNum=${parkNum};
+var prifix1Numname=window.document.getElementById("prifix1Numname");
+var reg = /^[0-9]+$/; 
+if(prifix1Num.length==0){ 
+	prifix1Numname.innerHTML="不能为空！"
+return false; 
+}
+if(!reg.test(prifix1Num)){ 
+	prifix1Numname.innerHTML = "输入有误！"
+	return false; 
+}
+if(prifix1Num.length>4){ 
+	prifix1Numname.innerHTML = "数字过大！"
+	return false; 
+	} 	
+if(prifix1Num>parkAllNum){ 
+	prifix1Numname.innerHTML = "超过总车位数量！"
+	return false; 
+	} 
+if(prifix1Num==0){ 
+	prifix1Numname.innerHTML = "输入有误！"
+	return false; 
+}
+else{
+	prifix1Numname.innerHTML = "通过！";
+}
+return true;
+}
+
+function isprifix2Num(){ 
+	
+	var prifix2Num=window.document.getElementById("prifix2Num").value;
+	 
+	var prifix2Numname=window.document.getElementById("prifix2Numname");
+	var reg = /^[0-9]+$/; 
+	if(prifix2Num.length==0){ 
+		prifix2Numname.innerHTML="不能为空！"
+	return false; 
+	}
+	if(!reg.test(prifix2Num)){ 
+		prifix2Numname.innerHTML = "输入有误！"
+		return false; 
+	}
+	if(prifix2Num.length>4){ 
+		prifix2Numname.innerHTML = "数字过大！"
+		return false; 
+		}
+	if(prifix2Num==0){ 
+		prifix2Numname.innerHTML = "输入有误！"
+		return false; 
+	}
+	else{
+		prifix2Numname.innerHTML = "通过！";
+	}
+	return true;
+	}
+	
+	
+function isprifix3Num(){ 
+	
+	var prifix3Num=window.document.getElementById("prifix3Num").value;
+	 
+	var prifix3Numname=window.document.getElementById("prifix3Numname");
+	var reg = /^[0-9]+$/; 
+	if(prifix3Num.length==0){ 
+		prifix3Numname.innerHTML="不能为空！"
+	return false; 
+	}
+	if(!reg.test(prifix3Num)){ 
+		prifix3Numname.innerHTML = "输入有误！"
+		return false; 
+	}
+	if(prifix3Num.length>4){ 
+		prifix3Numname.innerHTML = "数字过大！"
+		return false; 
+		} 
+	if(prifix3Num==0){ 
+		prifix3Numname.innerHTML = "输入有误！"
+		return false; 
+	}
+	else{
+		prifix3Numname.innerHTML = "通过！";
+	}
+	return true;
+	}
+
+function isprifix4Num(){ 
+	
+	var prifix4Num=window.document.getElementById("prifix4Num").value;
+	 
+	var prifix4Numname=window.document.getElementById("prifix4Numname");
+	var reg = /^[0-9]+$/; 
+	if(prifix4Num.length==0){ 
+		prifix4Numname.innerHTML="不能为空！"
+	return false; 
+	}
+	if(!reg.test(prifix4Num)){ 
+		prifix4Numname.innerHTML = "输入有误！"
+		return false; 
+	}
+	if(prifix4Num.length>4){ 
+		prifix4Numname.innerHTML = "数字过大！"
+		return false; 
+		} 
+	if(prifix4Num==0){ 
+		prifix4Numname.innerHTML = "输入有误！"
+		return false; 
+	}
+	else{
+		prifix4Numname.innerHTML = "通过！";
+	}
+	return true;
+	}
+	
+function isunPrifixNum(){ 
+	
+	var unPrifixNum=window.document.getElementById("unPrifixNum").value;
+	 
+	var unPrifixNumname=window.document.getElementById("unPrifixNumname");
+	var reg = /^[0-9]+$/; 
+	if(unPrifixNum.length==0){ 
+		unPrifixNumname.innerHTML="不能为空！"
+	return false; 
+	}
+	if(!reg.test(unPrifixNum)){ 
+		unPrifixNumname.innerHTML = "输入有误！"
+		return false; 
+	}
+	if(unPrifixNum.length>4){ 
+		unPrifixNumname.innerHTML = "数字过大！"
+		return false; 
+		} 	
+	if(unPrifixNum==0){ 
+		unPrifixNumname.innerHTML = "输入有误！"
+		return false; 
+	}
+	else{
+		unPrifixNumname.innerHTML = "通过！";
+	}
+	return true;
+	}
+ 
+
+</script>
+
 </body>
 
 </html>

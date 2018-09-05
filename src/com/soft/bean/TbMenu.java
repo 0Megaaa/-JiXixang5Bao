@@ -2,6 +2,8 @@ package com.soft.bean;
 
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+@Component
 public class TbMenu {
 
 	private long menuId;

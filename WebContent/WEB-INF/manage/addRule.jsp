@@ -27,253 +27,8 @@
 </head>
 
 <body data-type="widgets">
-    <script src="<%=path %>/assets/js/theme.js"></script>
-    <div class="am-g tpl-g">
-        <!-- 头部 -->
-        <header>
-            <!-- logo -->
-            <div class="am-fl tpl-header-logo">
-                <a href="javascript:;"><img src="<%=path %>/assets/img/logo.png" alt=""></a>
-            </div>
-            <!-- 右侧内容 -->
-            <div class="tpl-header-fluid">
-                <!-- 侧边切换 -->
-                <div class="am-fl tpl-header-switch-button am-icon-list">
-                    <span>
-
-                </span>
-                </div>
-                <!-- 搜索 -->
-                <div class="am-fl tpl-header-search">
-                    <form class="tpl-header-search-form" action="javascript:;">
-                        <button class="tpl-header-search-btn am-icon-search"></button>
-                        <input class="tpl-header-search-box" type="text" placeholder="搜索内容...">
-                    </form>
-                </div>
-                <!-- 其它功能-->
-                <div class="am-fr tpl-header-navbar">
-                    <ul>
-                        <!-- 欢迎语 -->
-                        <li class="am-text-sm tpl-header-navbar-welcome">
-                            <a href="javascript:;">欢迎你, <span>Amaze UI</span> </a>
-                        </li>
-
-                        <!-- 新邮件 -->
-                        <li class="am-dropdown tpl-dropdown" data-am-dropdown>
-                            <a href="javascript:;" class="am-dropdown-toggle tpl-dropdown-toggle" data-am-dropdown-toggle>
-                                <i class="am-icon-envelope"></i>
-                                <span class="am-badge am-badge-success am-round item-feed-badge">4</span>
-                            </a>
-                            <!-- 弹出列表 -->
-                            <ul class="am-dropdown-content tpl-dropdown-content">
-                                <li class="tpl-dropdown-menu-messages">
-                                    <a href="javascript:;" class="tpl-dropdown-menu-messages-item am-cf">
-                                        <div class="menu-messages-ico">
-                                            <img src="<%=path %>/assets/img/user04.png" alt="">
-                                        </div>
-                                        <div class="menu-messages-time">
-                                            3小时前
-                                        </div>
-                                        <div class="menu-messages-content">
-                                            <div class="menu-messages-content-title">
-                                                <i class="am-icon-circle-o am-text-success"></i>
-                                                <span>夕风色</span>
-                                            </div>
-                                            <div class="am-text-truncate"> Amaze UI 的诞生，依托于 GitHub 及其他技术社区上一些优秀的资源；Amaze UI 的成长，则离不开用户的支持。 </div>
-                                            <div class="menu-messages-content-time">2016-09-21 下午 16:40</div>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="tpl-dropdown-menu-messages">
-                                    <a href="javascript:;" class="tpl-dropdown-menu-messages-item am-cf">
-                                        <div class="menu-messages-ico">
-                                            <img src="<%=path %>/assets/img/user02.png" alt="">
-                                        </div>
-                                        <div class="menu-messages-time">
-                                            5天前
-                                        </div>
-                                        <div class="menu-messages-content">
-                                            <div class="menu-messages-content-title">
-                                                <i class="am-icon-circle-o am-text-warning"></i>
-                                                <span>禁言小张</span>
-                                            </div>
-                                            <div class="am-text-truncate"> 为了能最准确的传达所描述的问题， 建议你在反馈时附上演示，方便我们理解。 </div>
-                                            <div class="menu-messages-content-time">2016-09-16 上午 09:23</div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="tpl-dropdown-menu-messages">
-                                    <a href="javascript:;" class="tpl-dropdown-menu-messages-item am-cf">
-                                        <i class="am-icon-circle-o"></i> 进入列表…
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <!-- 新提示 -->
-                        <li class="am-dropdown" data-am-dropdown>
-                            <a href="javascript:;" class="am-dropdown-toggle" data-am-dropdown-toggle>
-                                <i class="am-icon-bell"></i>
-                                <span class="am-badge am-badge-warning am-round item-feed-badge">5</span>
-                            </a>
-
-                            <!-- 弹出列表 -->
-                            <ul class="am-dropdown-content tpl-dropdown-content">
-                                <li class="tpl-dropdown-menu-notifications">
-                                    <a href="javascript:;" class="tpl-dropdown-menu-notifications-item am-cf">
-                                        <div class="tpl-dropdown-menu-notifications-title">
-                                            <i class="am-icon-line-chart"></i>
-                                            <span> 有6笔新的销售订单</span>
-                                        </div>
-                                        <div class="tpl-dropdown-menu-notifications-time">
-                                            12分钟前
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="tpl-dropdown-menu-notifications">
-                                    <a href="javascript:;" class="tpl-dropdown-menu-notifications-item am-cf">
-                                        <div class="tpl-dropdown-menu-notifications-title">
-                                            <i class="am-icon-star"></i>
-                                            <span> 有3个来自人事部的消息</span>
-                                        </div>
-                                        <div class="tpl-dropdown-menu-notifications-time">
-                                            30分钟前
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="tpl-dropdown-menu-notifications">
-                                    <a href="javascript:;" class="tpl-dropdown-menu-notifications-item am-cf">
-                                        <div class="tpl-dropdown-menu-notifications-title">
-                                            <i class="am-icon-folder-o"></i>
-                                            <span> 上午开会记录存档</span>
-                                        </div>
-                                        <div class="tpl-dropdown-menu-notifications-time">
-                                            1天前
-                                        </div>
-                                    </a>
-                                </li>
-
-
-                                <li class="tpl-dropdown-menu-notifications">
-                                    <a href="javascript:;" class="tpl-dropdown-menu-notifications-item am-cf">
-                                        <i class="am-icon-bell"></i> 进入列表…
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <!-- 退出 -->
-                        <li class="am-text-sm">
-                            <a href="javascript:;">
-                                <span class="am-icon-sign-out"></span> 退出
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-        </header>
-        <!-- 风格切换 -->
-        <div class="tpl-skiner">
-            <div class="tpl-skiner-toggle am-icon-cog">
-            </div>
-            <div class="tpl-skiner-content">
-                <div class="tpl-skiner-content-title">
-                    选择主题
-                </div>
-                <div class="tpl-skiner-content-bar">
-                    <span class="skiner-color skiner-white" data-color="theme-white"></span>
-                    <span class="skiner-color skiner-black" data-color="theme-black"></span>
-                </div>
-            </div>
-        </div>
-        <!-- 侧边导航栏 -->
-        <div class="left-sidebar">
-            <!-- 用户信息 -->
-            <div class="tpl-sidebar-user-panel">
-                <div class="tpl-user-panel-slide-toggleable">
-                    <div class="tpl-user-panel-profile-picture">
-                        <img src="<%=path %>/assets/img/user04.png" alt="">
-                    </div>
-                    <span class="user-panel-logged-in-text">
-              <i class="am-icon-circle-o am-text-success tpl-user-panel-status-icon"></i>
-              禁言小张
-          </span>
-                    <a href="javascript:;" class="tpl-user-panel-action-link"> <span class="am-icon-pencil"></span> 账号设置</a>
-                </div>
-            </div>
-
-            <!-- 菜单 -->
-            <ul class="sidebar-nav">
-                <li class="sidebar-nav-heading">Components <span class="sidebar-nav-heading-info"> 附加组件</span></li>
-                <li class="sidebar-nav-link">
-                    <a href="index.html">
-                        <i class="am-icon-home sidebar-nav-link-logo"></i> 首页
-                    </a>
-                </li>
-                <li class="sidebar-nav-link">
-                    <a href="tables.html">
-                        <i class="am-icon-table sidebar-nav-link-logo"></i> 表格
-                    </a>
-                </li>
-                <li class="sidebar-nav-link">
-                    <a href="calendar.html">
-                        <i class="am-icon-calendar sidebar-nav-link-logo"></i> 日历
-                    </a>
-                </li>
-                <li class="sidebar-nav-link">
-                    <a href="form.html" class="active">
-                        <i class="am-icon-wpforms sidebar-nav-link-logo"></i> 表单
-
-                    </a>
-                </li>
-                <li class="sidebar-nav-link">
-                    <a href="chart.html">
-                        <i class="am-icon-bar-chart sidebar-nav-link-logo"></i> 图表
-
-                    </a>
-                </li>
-
-                <li class="sidebar-nav-heading">Page<span class="sidebar-nav-heading-info"> 常用页面</span></li>
-                <li class="sidebar-nav-link">
-                    <a href="javascript:;" class="sidebar-nav-sub-title">
-                        <i class="am-icon-table sidebar-nav-link-logo"></i> 数据列表
-                        <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
-                    </a>
-                    <ul class="sidebar-nav sidebar-nav-sub">
-                        <li class="sidebar-nav-link">
-                            <a href="table-list.html">
-                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 文字列表
-                            </a>
-                        </li>
-
-                        <li class="sidebar-nav-link">
-                            <a href="table-list-img.html">
-                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 图文列表
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="sidebar-nav-link">
-                    <a href="sign-up.html">
-                        <i class="am-icon-clone sidebar-nav-link-logo"></i> 注册
-                        <span class="am-badge am-badge-secondary sidebar-nav-link-logo-ico am-round am-fr am-margin-right-sm">6</span>
-                    </a>
-                </li>
-                <li class="sidebar-nav-link">
-                    <a href="login.html">
-                        <i class="am-icon-key sidebar-nav-link-logo"></i> 登录
-                    </a>
-                </li>
-                <li class="sidebar-nav-link">
-                    <a href="404.html">
-                        <i class="am-icon-tv sidebar-nav-link-logo"></i> 404错误
-                    </a>
-                </li>
-
-            </ul>
-        </div>
+<!-- 菜单 -->
+			<c:import url="menu.jsp"></c:import>
 
         <!-- 内容区域 -->
         <div class="tpl-content-wrapper">
@@ -295,48 +50,50 @@
                             </div>
                             <div class="widget-body am-fr">
 
-                                <form class="am-form tpl-form-line-form" action="addRule.action"  id="form" name="form" method="post">
+                                <form onsubmit = "return isChinese()&&ispassfh()&&ispass3h()&&ispass5h()&&ispass8h()" class="am-form tpl-form-line-form" action="addRule.action"  id="form" name="form" method="post">
                                 
                                 
                                     <div class="am-form-group">
-                                        <label for="user-name" class="am-u-sm-3 am-form-label">规则名称 <span class="tpl-form-line-small-title">Title</span></label>
+                                        <label for="user-name" class="am-u-sm-3 am-form-label">规则名称 <span class="tpl-form-line-small-title"></span></label>
                                         <div class="am-u-sm-9">
-                                            <input type="text" name="ruleName" class="tpl-form-input" id="user-name" placeholder="请输入规则名称">
-                                            <small>请输入规则名称3-10字左右。</small>
+                                            <input type="text" name="ruleName" class="tpl-form-input" id="ruleName"  onblur="isChinese()" placeholder="请输入不超过15个字中文！">
+                                        <small id="checkname"></small>
                                         </div>
                                     </div>
                                      <div class="am-form-group">
-                                        <label for="user-name" class="am-u-sm-3 am-form-label">不足3小时收费 <span class="tpl-form-line-small-title">Title</span></label>
+                                        <label for="user-name" class="am-u-sm-3 am-form-label">不足3小时收费 <span class="tpl-form-line-small-title"></span></label>
                                         <div class="am-u-sm-9">
-                                            <input type="text" name="passfh" class="tpl-form-input" id="user-name" placeholder="请输入收取费用">
-                                            <small>请输入不足3小时收费收取费用</small>
+                                            <input type="text" name="passfh" class="tpl-form-input" id="passfh" placeholder="请输入收取费用" onblur="ispassfh()">
+                                            <small id="passfhname"></small>
                                         </div>
                                     </div>
                                     <div class="am-form-group">
-                                        <label for="user-name" class="am-u-sm-3 am-form-label">超过3小时时每小时收费 <span class="tpl-form-line-small-title">Title</span></label>
+                                        <label for="user-name" class="am-u-sm-3 am-form-label">超过3小时时每小时收费 <span class="tpl-form-line-small-title"></span></label>
                                         <div class="am-u-sm-9">
-                                            <input type="text" name="pass3h" class="tpl-form-input" id="user-name" placeholder="请输入收取费用">
-                                            <small>请输入超过3小时每小时收取费用</small>
+                                            <input type="text" name="pass3h" class="tpl-form-input" onblur="ispass3h()" id="pass3h" placeholder="请输入收取费用">
+                                            <small id="pass3hname"></small>
                                         </div>
                                     </div>
                                     <div class="am-form-group">
-                                        <label for="user-name" class="am-u-sm-3 am-form-label">超过5小时时每小时收费 <span class="tpl-form-line-small-title">Title</span></label>
+                                        <label for="user-name" class="am-u-sm-3 am-form-label">超过5小时时每小时收费 <span class="tpl-form-line-small-title"></span></label>
                                         <div class="am-u-sm-9">
-                                            <input type="text" name="pass5h" class="tpl-form-input" id="user-name" placeholder="请输入收取费用">
-                                            <small>请输入超过5小时每小时收取费用</small>
+                                            <input type="text" name="pass5h" class="tpl-form-input"  onblur="ispass5h()" id="pass5h" placeholder="请输入收取费用">
+                                             <small id="pass5hname"></small>
                                         </div>
                                     </div>
                                      <div class="am-form-group">
-                                        <label for="user-name" class="am-u-sm-3 am-form-label">超过8小时时每小时收费 <span class="tpl-form-line-small-title">Title</span></label>
+                                        <label for="user-name" class="am-u-sm-3 am-form-label">超过8小时时每小时收费 <span class="tpl-form-line-small-title"></span></label>
                                         <div class="am-u-sm-9">
-                                            <input type="text" name="pass8h" class="tpl-form-input" id="user-name" placeholder="请输入收取费用">
-                                            <small>请输入超过8时每小时收取费用</small>
+                                            <input type="text" name="pass8h" class="tpl-form-input"  onblur="ispass8h()" id="pass8h" placeholder="请输入收取费用">
+                                           <small id="pass8hname"></small>
                                         </div>
                                     </div>
 
                                     <div class="am-form-group">
                                         <div class="am-u-sm-9 am-u-sm-push-3">
-                                            <button type="button"  class = "am-btn am-btn-primary tpl-btn-bg-color-success " onclick="addRule();">提交</button>
+                                           
+                                            <button  type="button"  class = "am-btn am-btn-primary tpl-btn-bg-color-success " onclick="addRule();">提交</button>
+                                           <button  type="button"  class = "am-btn am-btn-primary tpl-btn-bg-color-success " onclick = "javascript:history.back(-1);">返回</button>
                                         </div>
                                     </div>
                                 </form>
@@ -352,7 +109,7 @@
     <script src="<%=path %>/assets/js/amazeui.datatables.min.js"></script>
     <script src="<%=path %>/assets/js/dataTables.responsive.min.js"></script>
     <script src="<%=path %>/assets/js/app.js"></script>
-    
+    //提交表单
 <script src="${pageContext.request.contextPath }/js/jquery.min.js"></script>
 <script type="text/javascript">
 	function addRule(){
@@ -360,6 +117,119 @@
 	}
 	</script>
 
+<!-- 表单验证 -->
+<script language="javascript"> 
+function ispassfh(){ 
+var passfh=window.document .getElementById ("passfh").value;
+var passfhname=window.document .getElementById ("passfhname");
+var reg = /^[0-9]+$/; 
+if(passfh.length==0){ 
+	passfhname.innerHTML = "不能为空！"
+return false; 
+}
+if(!reg.test(passfh)){ 
+	passfhname.innerHTML = "输入有误！"
+	return false; 
+}
+if(passfh.length>4){ 
+	passfhname.innerHTML = "数字过大请谨慎设置规则！"
+	return false; 
+	} 	
+else{
+	passfhname.innerHTML = "通过！";
+}
+return true;
+}
+
+function ispass8h(){ 
+	var pass8h=window.document .getElementById ("pass8h").value;
+	var pass8hname=window.document .getElementById ("pass8hname");
+	var reg = /^[0-9]+$/; 
+	if(pass8h.length==0){ 
+		pass8hname.innerHTML = "不能为空！"
+	return false; 
+	}
+	if(!reg.test(pass8h)){ 
+		pass8hname.innerHTML = "输入有误！"
+		return false; 
+	}
+	if(pass8h.length>4){ 
+		pass8hname.innerHTML = "数字过大请谨慎设置规则！"
+		return false; 
+		} 	
+	else{
+		pass8hname.innerHTML = "通过！";
+	}
+	return true;
+	}
+	
+function ispass5h(){ 
+	var pass5h=window.document .getElementById ("pass5h").value;
+	var pass5hname=window.document .getElementById ("pass5hname");
+	var reg = /^[0-9]+$/; 
+	if(pass5h.length==0){ 
+		pass5hname.innerHTML = "不能为空！"
+	return false; 
+	}
+	if(!reg.test(pass5h)){ 
+		pass5hname.innerHTML = "输入有误！"
+		return false; 
+	}
+	if(pass5h.length>4){ 
+		pass5hname.innerHTML = "数字过大请谨慎设置规则！"
+		return false; 
+		} 	
+	else{
+		pass5hname.innerHTML = "通过！";
+	}
+	return true;
+	}
+	
+function ispass3h(){ 
+	var pass3h=window.document .getElementById ("pass3h").value;
+	var pass3hname=window.document .getElementById ("pass3hname");
+	var reg = /^[0-9]+$/; 
+	if(pass3h.length==0){ 
+		pass3hname.innerHTML = "不能为空！"
+	return false; 
+	}
+	if(!reg.test(pass3h)){ 
+		pass3hname.innerHTML = "输入有误！"
+		return false; 
+	}
+	if(pass3h.length>4){ 
+		pass3hname.innerHTML = "数字过大请谨慎设置规则！"
+		return false; 
+		} 	
+	else{
+		pass3hname.innerHTML = "通过！";
+	}
+	return true;
+	}
+
+function isChinese(){  
+	var ruleName=window.document .getElementById ("ruleName").value;
+	var checkname=window.document .getElementById ("checkname");
+	var reg=/^[\u0391-\uFFE5]+$/; 
+	if(ruleName.length==0){ 
+	checkname.innerHTML = "不能为空！"
+	return false; 
+	}; 
+	if(!reg.test(ruleName)){ 
+		checkname.innerHTML = "输入有误！"
+		return false; 
+		}; 
+	if(ruleName.length>15){ 
+		checkname.innerHTML = "不超过15个字！"
+		return false; 
+		} 	
+	else{
+		checkname.innerHTML = "通过！";
+	}
+	return true;
+	}
+
+</script>
 </body>
 
 </html>

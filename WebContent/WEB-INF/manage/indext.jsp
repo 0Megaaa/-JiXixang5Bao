@@ -36,17 +36,14 @@
 }
 </style>
 </head>
-
 <body data-type="widgets">
-	<!-- 菜单 -->
-	
-	
+	 
+			 
+			<!-- 菜单 -->
 			<c:import url="menu.jsp"></c:import>
-
-
-
-
-
+		 
+		 
+		 
 
 		<!-- 内容区域 -->
 		<div class="tpl-content-wrapper">
@@ -67,12 +64,12 @@
 								</div>
 							</div>
 
-									<c:if test="${list!=null}">
- 
-<canvas id="canvas" width="800" height="450"> 你的浏览器还不支持canvas</canvas>
-							
-									</c:if>
-								
+							<c:if test="${list!=null}">
+
+								<canvas id="canvas" width="800" height="450"> 你的浏览器还不支持canvas</canvas>
+
+							</c:if>
+
 						</div>
 					</div>
 				</div>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
+	"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+	<mapper namespace="com.soft.mapper.IndextMenuMapper">
+	
+
+     <select id="findOneMenu"  resultType="com.soft.bean.TbMenu">
+          select * from tbmenu where menupid=0 and menuid in(select r.menuid from tbrolemenu r where roleid  = #{0} )
+    </select>
+    
+    <select id="findTwoMenu" resultType="com.soft.bean.TbMenu">
+          select * from tbmenu where menupid=#{0} and menuid in(select r.menuid from tbrolemenu r where roleid  = #{1} )
+    </select>
+    
+    
+	
+	
+	
+</mapper>

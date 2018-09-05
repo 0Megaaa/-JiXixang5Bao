@@ -20,7 +20,7 @@ public class RuleBizImpl implements RuleBiz {
 	public Page<TbRule> findAll(Page page) {
 		
 		page.setCurPage(page.getCurPage()==0?1:page.getCurPage());
-		page.setPageSize(2);
+		page.setPageSize(5);
 		RowBounds rb = new RowBounds((page.getCurPage()-1)*page.getPageSize(),page.getPageSize());
 		page.setPageList(ruleMapper.getRuleList(page,rb));
 		page.setTotalRecord(ruleMapper.getRuleList(page).size());

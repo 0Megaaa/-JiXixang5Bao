@@ -24,6 +24,7 @@ import com.soft.bean.ViewCarPark;
 import com.soft.biz.CarOutBiz;
 import com.soft.biz.SelfChargeBiz;
 import com.soft.biz.StaffBiz;
+import com.soft.tools.OcrUtil;
 
 @Controller
 @RequestMapping("/carOut")
@@ -32,23 +33,8 @@ public class CarOutHandler {
 	private CarOutBiz carOutBizImpl;
 	@Resource
 	private SelfChargeBiz SelfChargeBizImpl;
-	// @RequestMapping(value = "/readPicture.action")
-	// public String fileact(HttpServletRequest request, String outImgSrc) {
-	//
-	// PlateRecognition pr = new
-	// PlateRecognitionImpl("D:\\eclipse\\park\\src\\resources");
-	// File file = new File(outImgSrc);
-	// Map<String, Plate> ps = pr.plateRecognize(file.getAbsolutePath());
-	// for (Plate p : ps.values()) {
-	// System.out.println(p.toString().substring(12).split(",")[0]);
-	// TbCar Car = new TbCar();
-	// Car.setCarNum(p.toString().substring(12).split(",")[0]);
-	// Car.setOutImgSrc(outImgSrc);
-	// request.setAttribute("Car", Car);
-	// carOutBizImpl.addCarOut(Car);
-	// }
-	// return "forward:/carOut/findCarOut.action";
-	// }
+	@Resource
+	private OcrUtil ocr;
 
 	@RequestMapping(value = "/fileact.action")
 	public String fileact(MultipartFile fileact, HttpServletRequest request) {
@@ -80,21 +66,28 @@ public class CarOutHandler {
 				}
 			}
 
-			String a = getClass().getProtectionDomain().getCodeSource().getLocation().getPath();
-			String s = a.substring(1) + "resources";
-			PlateRecognition pr = new PlateRecognitionImpl(s);
-
+			String carNum = ocr.getCarNum(path, filename).substring(ocr.getCarNum(path, filename).length()-12, ocr.getCarNum(path, filename).length()-5);
 			String path2 = savedFile + "\\" + filename;
-			File file = new File(path2);
-			Map<String, Plate> ps = pr.plateRecognize(file.getAbsolutePath());
-			for (Plate p : ps.values()) {
-				TbCar Car = new TbCar();
-				Car.setCarNum(p.toString().substring(12).split(",")[0]);
-				Car.setOutImgSrc(path2);
-				request.setAttribute("Car", Car);
-				carOutBizImpl.addCarOut(Car);
-			}
+			TbCar Car = new TbCar();
+			Car.setCarNum(carNum);
+			Car.setOutImgSrc(path2);
+			request.setAttribute("Car", Car);
+			carOutBizImpl.addCarOut(Car);
 			
+//			String a = getClass().getProtectionDomain().getCodeSource().getLocation().getPath();
+//			String s = a.substring(1) + "resources";
+//			PlateRecognition pr = new PlateRecognitionImpl(s);
+//
+//			String path2 = savedFile + "\\" + filename;
+//			File file = new File(path2);
+//			Map<String, Plate> ps = pr.plateRecognize(file.getAbsolutePath());
+//			for (Plate p : ps.values()) {
+//				TbCar Car = new TbCar();
+//				Car.setCarNum(p.toString().substring(12).split(",")[0]);
+//				Car.setOutImgSrc(path2);
+//				request.setAttribute("Car", Car);
+//				carOutBizImpl.addCarOut(Car);
+//			}
 			
 		}
 		return "forward:/carOut/findCarOut.action";
@@ -109,10 +102,10 @@ public class CarOutHandler {
 	@RequestMapping(value = "/findCarOut.action")
 	public String findCarOut(HttpServletRequest request) {
 		 TbCar Car = (TbCar) request.getAttribute("Car");
+		 
 //		TbCar CarFull = carOutBizImpl.findCarOut(Car);
 //		request.setAttribute("CarFull", CarFull);
 		
-
 		int i = SelfChargeBizImpl.findList(Car.getCarNum());
 		if (i == 1) {
 			// i=1说明有值，说明是会员。或白名单。
@@ -123,11 +116,7 @@ public class CarOutHandler {
 			request.setAttribute("flag", 1);
 			TbCar tbCar = SelfChargeBizImpl.findByCarNum(Car);
 			
-			
-			
 			SelfChargeBizImpl.updateWhiteCarOutMsg(tbCar);
-			
-			
 			
 			request.setAttribute("tbCar", tbCar);
 			return "manage/carOut";
@@ -154,23 +143,5 @@ public class CarOutHandler {
 		return "manage/carOut";
 
 	}
-
-	/*
-	 * @RequestMapping(value = "/getPicture.action") public @ResponseBody
-	 * ViewCarPark getPicture(HttpServletRequest request, TbCar Car) {
-	 * ViewCarPark CarFull = carOutBizImpl.findCarOut(Car);
-	 * System.out.println("2222"); return CarFull; }
-	 */
-
-	/*
-	 * @RequestMapping(value = "/getPicture.action")
-	 * 
-	 * @ResponseBody public Map getPicture(HttpServletRequest request, TbCar
-	 * Car) { Map<String, Object> map = new HashMap<>(); // 调用service查询数据库验证登录信息
-	 * // 判断用户是否存在 TbCar TbCar = carOutBizImpl.findCarOut(Car);
-	 * System.out.println(TbCar.getParkImgSrc()); if (TbCar != null) {
-	 * map.put("message", "success"); map.put("TbCar", TbCar); return map; }
-	 * else { map.put("message", "error"); } return map; }
-	 */
-
+ 
 }

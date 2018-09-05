@@ -23,19 +23,24 @@ public class RuleHandler {
 		 
 		list = ruleBizImpl.findAll(page);
 		request.setAttribute("list", list);
-
+		 
+		
 		return "manage/adminRule";
 	}
 
 	// 删除
 	@RequestMapping("/delete.action")
-	public String delete(HttpServletRequest request, Page<TbRule> page) {
-		int a = ruleBizImpl.delete(page.getRuleId());
+	public String delete(HttpServletRequest request, Page<TbRule> page,long ruleState) {
 		String deletemsg = "删除失败";
-		if(a==0){
-			  deletemsg = "删除成功";
+		if(ruleState==2){
+			int a = ruleBizImpl.delete(page.getRuleId());
+			
+			if(a==0){
+				  deletemsg = "删除成功";
+			} 
+				
 		}else{
-			  deletemsg = "删除失败";
+			  deletemsg = "已启动规则不可删除";
 		}
 		request.setAttribute("deletemsg", deletemsg);
 		return "forward:/rule/findAll.action";
@@ -45,8 +50,12 @@ public class RuleHandler {
 	@RequestMapping("/open.action")
 	public String open(HttpServletRequest request, Page<TbRule> page) {
 
-		ruleBizImpl.open(page.getRuleId());
-
+		int b =ruleBizImpl.open(page.getRuleId());
+		 String openmsg = "启动失败";
+		if(b==0){
+			  openmsg = "启动成功";
+		} 
+		request.setAttribute("openmsg", openmsg);
 		return "forward:/rule/findAll.action";
 	}
 
@@ -60,7 +69,8 @@ public class RuleHandler {
 	@RequestMapping("/addRule.action")
 	public String addRule(HttpServletRequest request, TbRule rule) {
 		rule.setRuleState(2 + "");
-		ruleBizImpl.addRule(rule);
+		 ruleBizImpl.addRule(rule);
+		 
 		return "redirect:/rule/findAll.action";
 	}
 

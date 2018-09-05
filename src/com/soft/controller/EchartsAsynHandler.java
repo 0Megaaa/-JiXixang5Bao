@@ -59,32 +59,64 @@ public class EchartsAsynHandler {
 		viewBar.setAutoChannel("自助");
 		viewBar.setMonthServic("月缴");
 		viewBar.setTollChannel("临时");
+//		       {name: '自助缴费',  
+//             data: jsonData.datas1},  
+//             {name: '月缴费',  
+//             data: jsonData.datas2 },
+//             {name: '收费端缴费',  
+//             data: jsonData.datas3 }
+		
+		
+		
 		ViewAutoService viewSelfService = payChannelBizImpl.findAutoChannel(viewBar);
-		ViewMonthService viewMonthService = payChannelBizImpl.findMonthServic(viewBar);
+		
 		ViewTollChannel viewTollChannel = payChannelBizImpl.findTollChannel(viewBar);
-		
-		
+		List<Double> datas1 = Arrays.asList(0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0);
+		List<Double> datas2 = Arrays.asList(0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0);
+		List<Double> datas3 = Arrays.asList(0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0);
 		EchartsBean echartsBean = new EchartsBean();
 //		List<String> xAxisCategory = Arrays.asList("高新区", "蜀山区", "瑶海区", "包河区", "经开区", "政务区", "滨湖新区", "新站区");
 		
 		
-		List<Double> datas1 = Arrays.asList(viewSelfService.getM1(), viewSelfService.getM2(), viewSelfService.getM3(), 
+		
+		//自助
+		try {
+		  datas1 = Arrays.asList(viewSelfService.getM1(), viewSelfService.getM2(), viewSelfService.getM3(), 
 				viewSelfService.getM4(), viewSelfService.getM5(), viewSelfService.getM6(), viewSelfService.getM7(), 
 				viewSelfService.getM8(), viewSelfService.getM9(), viewSelfService.getM10(), viewSelfService.getM11(),
 				viewSelfService.getM12());
+	} catch (Exception e) {
+		// TODO: handle exception
+	}
 		
-		List<Double> datas2 = Arrays.asList(viewMonthService.getM1(), viewMonthService.getM2(), viewMonthService.getM3(), 
-				viewMonthService.getM4(), viewMonthService.getM5(), viewMonthService.getM6(), viewMonthService.getM7(), 
-				viewMonthService.getM8(), viewMonthService.getM9(), viewMonthService.getM10(), viewMonthService.getM11(),
-				viewMonthService.getM12());
 		
-		List<Double> datas3 = Arrays.asList(viewTollChannel.getM1(), viewTollChannel.getM2(), viewTollChannel.getM3(), 
+		//月缴
+		try {
+			ViewMonthService viewMonthService = payChannelBizImpl.findMonthServic(viewBar);
+			  datas2 = Arrays.asList(viewMonthService.getM1(), viewMonthService.getM2(), viewMonthService.getM3(), 
+					viewMonthService.getM4(), viewMonthService.getM5(), viewMonthService.getM6(), viewMonthService.getM7(), 
+					viewMonthService.getM8(), viewMonthService.getM9(), viewMonthService.getM10(), viewMonthService.getM11(),
+					viewMonthService.getM12());
+		} catch (Exception e) {
+			// TODO: handle exception
+		} 
+		
+		
+		//收费端
+		try {
+		 datas3 = Arrays.asList(viewTollChannel.getM1(), viewTollChannel.getM2(), viewTollChannel.getM3(), 
 				viewTollChannel.getM4(), viewTollChannel.getM5(), viewTollChannel.getM6(), viewTollChannel.getM7(), 
 				viewTollChannel.getM8(), viewTollChannel.getM9(), viewTollChannel.getM10(), viewTollChannel.getM11(),
 				viewTollChannel.getM12());
 		echartsBean.setDatas1(datas1); 
 		echartsBean.setDatas2(datas2); 
 		echartsBean.setDatas3(datas3); 
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		
+		
 		// echartsBean.setxAxisCategory(xAxisCategory);
 		return echartsBean;
 	}
